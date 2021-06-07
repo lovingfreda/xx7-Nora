@@ -2,18 +2,53 @@
 <template>
   <div id="app">
 
+
     <!-- Left panel with cover effect-->
     <div class="panel panel-left panel-cover theme-dark panel-init">
-      <div class="view">
+      <div class="view view-init" data-name="left">
         <div class="page">
           <div class="navbar">
             <div class="navbar-bg"></div>
-            <div class="navbar-inner">
-              <div class="title">Left Panel</div>
+            <div class="navbar-inner sliding">
+              <div class="title">甲板</div>
             </div>
           </div>
           <div class="page-content">
-            <div class="block">Left panel content goes here</div>
+            <div class="block-title">查看各层平面布局</div>
+            <div class="list links-list">
+              <ul>
+                <li><a id="Biz_Link_1" @click="${showPhotoBrowser}" href="#">甲板 4</a></li>
+                <li><a id="Biz_Link_2" @click="${showPhotoBrowser}" href="#">甲板 5</a></li>
+                <li><a id="Biz_Link_3" @click="${showPhotoBrowser}" href="#">甲板 6</a></li>
+                <li><a id="Biz_Link_4" @click="${showPhotoBrowser}" href="#">甲板 7</a></li>
+                <li><a id="Biz_Link_5" @click="${showPhotoBrowser}" href="#">甲板 8</a></li>
+                <li><a id="Biz_Link_6" @click="${showPhotoBrowser}" href="#">甲板 10</a></li>
+                <li><a id="Biz_Link_7" @click="${showPhotoBrowser}" href="#">甲板 11</a></li>
+                <li><a id="Biz_Link_8" @click="${showPhotoBrowser}" href="#">甲板 12</a></li>
+                <li><a id="Biz_Link_9" @click="${showPhotoBrowser}" href="#">甲板 13</a></li>
+                <li><a id="Biz_Link_10" @click="${showPhotoBrowser}" href="#">甲板 14</a></li>
+                <li><a id="Biz_Link_11" @click="${showPhotoBrowser}" href="#">甲板 15</a></li>
+                <li><a id="Biz_Link_12" @click="${showPhotoBrowser}" href="#">甲板 16</a></li>
+              </ul>
+            </div>
+            <div class="block-title">救援小知识</div>
+            <div class="list links-list">
+              <ul>
+                <li><a href="/left-page-1/">意外医护</a></li>
+                <li><a href="/left-page-2/">救助指南</a></li>
+              </ul>
+            </div>
+            <div class="block-title">应用程序</div>
+            <div class="list links-list">
+              <ul>
+                <li>
+                  <a href="/about/" data-view=".view-main" class="panel-close">About</a>
+                </li>
+                <li>
+                  <a href="#" data-view=".view-main" class="back panel-close">Back in history</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -25,11 +60,24 @@
           <div class="navbar">
             <div class="navbar-bg"></div>
             <div class="navbar-inner">
-              <div class="title">Right Panel</div>
+              <div class="title">14 Night Nonrev Repositioning</div>
             </div>
           </div>
           <div class="page-content">
-            <div class="block">Right panel content goes here</div>
+            <div class="block">第1天 - 干尼亚(克里特岛)，希腊</div>
+            <div class="block">第2天 - 雅典(比雷埃夫斯)，希腊</div>
+            <div class="block">第3天 - 海上巡游</div>
+            <div class="block">第4天 - 海上巡游</div>
+            <div class="block">第5天 - 海上巡游</div>
+            <div class="block">第6天 - 海上巡游</div>
+            <div class="block">第7天 - 海上巡游</div>
+            <div class="block">第8天 - 海上巡游</div>
+            <div class="block">第9天 - 海上巡游</div>
+            <div class="block">第10天 - 海上巡游</div>
+            <div class="block">第11天 - 海上巡游</div>
+            <div class="block">第12天 - 海上巡游</div>
+            <div class="block">第13天 - Poole Bay，UK</div>
+            <div class="block">第14天 - Poole Bay，UK</div>
           </div>
         </div>
       </div>
@@ -43,17 +91,17 @@
           <a href="#view-home" class="tab-link tab-link-active">
             <i class="icon f7-icons if-not-md">house_fill</i>
             <i class="icon material-icons if-md">home</i>
-            <span class="tabbar-label">Home</span>
+            <span class="tabbar-label">首页</span>
           </a>
           <a href="#view-catalog" class="tab-link">
             <i class="icon f7-icons if-not-md">square_list_fill</i>
             <i class="icon material-icons if-md">view_list</i>
-            <span class="tabbar-label">Catalog</span>
+            <span class="tabbar-label">日程</span>
           </a>
           <a href="#view-settings" class="tab-link">
             <i class="icon f7-icons if-not-md">gear</i>
             <i class="icon material-icons if-md">settings</i>
-            <span class="tabbar-label">Settings</span>
+            <span class="tabbar-label">设置</span>
           </a>
         </div>
       </div>
@@ -143,9 +191,29 @@
 </template>
 <script>
   export default (props, { $f7, $update }) => {
+
     // Login screen demo data
     let username = '';
     let password = '';
+
+    var myPhotoBrowserPage = $f7.photoBrowser.create({
+        photos: [
+          'static/images/floor_4.jpg',      // 4--8
+          'static/images/floor_11.jpg',
+          'static/images/floor_4.jpg',
+          'static/images/floor_11.jpg',
+          'static/images/floor_4.jpg',
+          'static/images/floor_11.jpg',     // 10--16
+          'static/images/floor_4.jpg',
+          'static/images/floor_11.jpg',
+          'static/images/floor_4.jpg',
+          'static/images/floor_11.jpg',
+          'static/images/floor_4.jpg',
+          'static/images/floor_11.jpg',
+          ],
+        type: 'popup',
+        pageBackLinkText: 'Back'
+    });
 
     const updateUsername = (e) => {
       username = e.target.value;
@@ -159,6 +227,25 @@
       $f7.dialog.alert('Username: ' + username + '<br/>Password: ' + password, () => {
         $f7.loginScreen.close();
       });
+    }
+
+    //Open photo browser on click
+    const showPhotoBrowser = (e) => {
+      /*=== Default standalone ===*/
+      var str = new String(e.target.id);    // Biz_Link_4|Biz_Link_5|Biz_Link_6.....
+      var reg = str.substring(0,9);         // Biz_Link_
+      var x = str.replace(reg,"");          // 4|5|6.....
+      var idx = (x)-1;      // activeIndex start at 0
+
+//var straa = new String(e.target.href.type); alert(straa.substring(2,2));return; //var x = str.indexOf("#");alert("DEBUG = ".x);return;
+//var idx = str.match(reg); alert("DEBUG = ".idx);return;
+
+//      var idx = $(this).attr("href", 1);      console.log("DEBUG = ".idx);
+      //var id = $(this).attr('href').split('?')[1].split('&')[0].split('=')[1];
+      myPhotoBrowserPage.activeIndex = (idx);
+
+      //Open photo browser on click
+      myPhotoBrowserPage.open();
     }
 
     return $render;
