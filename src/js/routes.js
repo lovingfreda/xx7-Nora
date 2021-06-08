@@ -13,6 +13,8 @@ import NotFoundPage from '../pages/404.f7.html';
 import LeftPage1 from '../pages/left-page-1.f7.html';
 import LeftPage2 from '../pages/left-page-2.f7.html';
 
+import CruiseAjaxLoad from '../pages/cruise-ajax-load.f7.html';
+
 var routes = [
   {
     path: '/',
@@ -95,6 +97,75 @@ var routes = [
             }
           }
         );
+      }, 1000);
+    },
+  },
+  {
+    path: '/request-and-load/catg/:catgId/',
+    async: function ({ router, to, resolve }) {
+      // App instance
+      var app = router.app;
+
+      // Show Preloader
+      app.preloader.show();
+
+      // User ID from request
+      var cateId = to.params.catgId;
+
+      // Simulate Ajax Request
+      setTimeout(function () {
+        // We got user data from request
+        var vCatg = {
+          firstName: 'Dear',
+          lastName: 'My Lover',
+          about: 'Hello, i am FUCKING YangYang of Framework7! Hope you like it!',
+          links: [
+            {
+              title: 'Fucking YangY Website',
+              url: 'http://framework7.io',
+            },
+            {
+              title: 'Fucking Eva Forum',
+              url: 'http://forum.framework7.io',
+            },
+          ]
+        };
+        // Tony Adding Main Logic of AJAX :  1. Larabel 2. CCS Studio
+//      app.request.get('http://localhost:8083/products', function(data) {
+        app.request.get('http://localhost:8086/services/link_categories.php?node='+cateId, function(data) {
+              // Hide Preloader
+              app.preloader.hide();
+
+              // Resolve route to load page
+              resolve(
+                  {
+                      component: CruiseAjaxLoad,
+                  },
+                  {
+                      props: {
+                          catg: vCatg,
+                          prdt: data,
+                      }
+                  }
+              );
+
+          });
+/*
+        // Hide Preloader
+        app.preloader.hide();
+
+        // Resolve route to load page
+        resolve(
+          {
+            component: CruiseAjaxLoad,
+          },
+          {
+            props: {
+              catg: catg,
+            }
+          }
+        );
+*/
       }, 1000);
     },
   },
