@@ -118,7 +118,7 @@ var routes = [
         var vCatg = {
           firstName: 'Dear',
           lastName: 'My Lover',
-          about: 'Hello, i am FUCKING YangYang of Framework7! Hope you like it!',
+          about: 'Hello, i am FUCKING YangY of Framework7! Hope you like it!',
           links: [
             {
               title: 'Fucking YangY Website',
