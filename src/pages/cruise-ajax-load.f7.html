@@ -17,31 +17,15 @@
         ${user.about}
       </div>
 
-
-      <div class="list links-list">
-        <ul>
-          ${user.links.map((link) => $h`
-            <li><a class="external" target="_blank" href="${link.url}">${link.title}</a></li>
-          `)}
-        </ul>
-      </div>
-<!--  not works in new version.
-      <div class="list links-list">
-        <ul>
-          {{#each products}}
-            <li><a href="/product/{{id}}/">{{name}}--({{description}})</a></li>
-          {{/each}}
-        </ul>
-      </div>
- -->
       <div class="list links-list">
         <ul>
           ${products.map((link) => $h`
-            <li><a class="external" target="_blank" href="${link.id}">${link.name}</a></li>
+            <li><a class="popup-open" target="_self" href="/request-and-load/links/${link.id}/">${link.name}</a></li>
+       <!-- <li><a href="#${link.id}" class="popup-open" data-popup="#my-popup-${link.id}">${link.name}</a></li -->
           `)}
         </ul>
       </div>
-
+<!-- 
       <div class="list links-list">
         <ul>
           <li>
@@ -49,32 +33,8 @@
           </li>
         </ul>
       </div>
-
+ -->
     </div>
-
-    <!-- Popup -->
-    <div class="popup" id="my-popup">
-      <div class="view">
-        <div class="page">
-          <div class="navbar">
-            <div class="navbar-bg"></div>
-            <div class="navbar-inner">
-              <div class="title">Popup</div>
-              <div class="right">
-                <a href="#" class="link popup-close">Close</a>
-              </div>
-            </div>
-          </div>
-          <div class="page-content">
-            <div class="block">
-              <p>Popup content goes here.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
   </div>
 </template>
 <script>
@@ -86,8 +46,7 @@
 //      products: JSON.parse(this.$route.context.products),                 // Important !!! ********************************
 //      products: JSON.parse(this.$route.context.products)['products'],     // Important !!! ********************************
     var products = JSON.parse(props.prdt)['products'];
-    
-    console.log("Access data succeed!" + products[0]["name"]);  // Debug..
+    console.log("Get LinkCategories succeed! Result List : {" + products[0]["name"] + "...}");  // Debug..
 
     return $render;
   }
