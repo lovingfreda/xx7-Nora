@@ -1,0 +1,135 @@
+<template>
+<div class="page" data-name="about">
+
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding">
+    ${products.map((link) => $h`
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="if-not-md">Back</span>
+        </a>
+      </div>
+      <div class="title">${link.name}</div>
+    `)}
+    </div>
+  </div>
+
+  <div class="page-content">
+    <!-- inner loop, such as DINNER-A|LUNCH-B|PIZZA-C|FOOD-D|.... -->
+      <div class="list links-list">
+        <ul>
+<!-- 
+          <li>
+              <a href="#1" class="popup-open" data-popup="#my-popup-1">自定义 - 测试项目</a>
+              <div class="block">
+                       <div style="display:inline">
+                            <p>甲板14, Midship</p>
+                            <p>我们的海上历奇项目体验为孩子们准备了游戏和活动和科普项目，让他们也能尽享充满乐趣的游轮时光!</p>
+                       </div>
+                       <div style="display:inline">
+                            <p><img src="static/images/mytemp03.jpg" width="190" height="150" border="0" alt="" /></p>
+                       </div>
+              </div>
+          </li>
+ -->
+          <li>
+              <a href="#1" class="popup-open" data-popup="#my-popup-1">自定义 - 测试项目</a>
+              <div class="block">
+                  <p class="row">
+                    <span class="col">
+                        <p>甲板14, Midship</p>
+                        <p>我们的海上历奇项目体验为孩子们准备了游戏和活动和科普项目，让他们也能尽享充满乐趣的游轮时光!</p>
+                    </span>
+                    <span class="col">
+                        <img src="static/images/mytemp03.jpg" width="190" height="150" border="0" alt="" />
+                    </span>
+                  </p>
+              </div>
+          </li>
+<!-- 
+          <li>
+              <div class="block">
+              <p class="row"><a href="#1" class="popup-open" data-popup="#my-popup-1">自定义 - 测试项目</a></p>
+              <p class="row">
+                <span class="col">
+                    <p>甲板14, Midship</p>
+                    <p>我们的海上历奇项目体验为孩子们准备了游戏和活动和科普项目，让他们也能尽享充满乐趣的游轮时光!</p>
+                </span>
+                <span class="col">
+                    <img src="static/images/mytemp03.jpg" width="190" height="150" border="0" alt="" />
+                </span>
+              </p>
+              </div>
+          </li>
+ -->
+        </ul>
+      </div>
+    ${pdtlinks.map((line) => $h`
+      <div class="list links-list">
+        <ul>
+          <li>
+              <p><a href="#${line.id}" class="popup-open" data-popup="#my-popup-${line.id}">${line.id} - ${line.name}</a></p>
+              <p><span>${line.addr}</span><span align="right"><img src="${line.url}" width="190" height="150" border="0" alt="" /></span></p>
+              <p>${line.title}</p>
+          </li>
+        </ul>
+      </div>
+    `)}
+  </div>
+
+    <!-- Popup -->
+    <!-- outside loop, such as ACTIVE|TASK|... -->
+    ${pdtlinks.map((link) => $h`
+        <div class="popup" id="my-popup-${link.id}">
+          <div class="view">
+            <div class="page">
+
+              <div class="navbar">
+                <div class="navbar-bg"></div>
+                <div class="navbar-inner">
+                  <div class="title">${link.name}</div>
+                  <div class="right">
+                    <a href="#" class="link popup-close">Close</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="page-content">
+                <!-- inner loop, such as DINNER-A|LUNCH-B|PIZZA-C|FOOD-D|.... -->
+                  <div class="list links-list">
+                    <ul>
+                      <li>
+                          <p>${link.catg} - ${link.name}</p>
+                          <p><span>${link.addr}</span><span align="right"><img src="${link.url}" width="190" height="150" border="0" alt="" /></span></p>
+                          <p>${link.desc}</p>
+                          <p></p>
+                      </li>
+                    </ul>
+                  </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    `)} -->
+
+</div>
+</template>
+<script>
+export default (props) => {
+    const user = props.catg;
+
+// Important !!! a> we set this var in Route   b> MUST using JSON.parse()
+        // New veresion using 'success'=1 and 'products'=xxxxxxx, so we using new statement
+//      products: JSON.parse(this.$route.context.products),                 // Important !!! ********************************
+//      products: JSON.parse(this.$route.context.products)['products'],     // Important !!! ********************************
+    var products = JSON.parse(props.prdt)['products'];
+    var pdtlinks = JSON.parse(props.prdt)['links'];
+    console.log("Access Catg succeed!" + products[0]["name"]);  // Debug..
+    console.log("Access Prdt succeed!" + pdtlinks[0]["name"]);  // Debug..
+    console.log("debug....." + pdtlinks);  // Debug..
+    return $render;
+};
+</script>
