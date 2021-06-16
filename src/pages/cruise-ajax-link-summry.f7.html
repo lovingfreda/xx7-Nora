@@ -34,6 +34,7 @@
               </div>
           </li>
  -->
+
           <li>
               <a href="#1" class="popup-open" data-popup="#my-popup-1">自定义 - 测试项目</a>
               <div class="block">
@@ -48,6 +49,7 @@
                   </p>
               </div>
           </li>
+
 <!-- 
           <li>
               <div class="block">
@@ -70,9 +72,18 @@
       <div class="list links-list">
         <ul>
           <li>
-              <p><a href="#${line.id}" class="popup-open" data-popup="#my-popup-${line.id}">${line.id} - ${line.name}</a></p>
-              <p><span>${line.addr}</span><span align="right"><img src="${line.url}" width="190" height="150" border="0" alt="" /></span></p>
-              <p>${line.title}</p>
+              <a href="#${line.id}" class="popup-open" data-popup="#my-popup-${line.id}">${line.id} - ${line.name}</a>
+              <div class="block">
+                  <p class="row">
+                    <span class="col">
+                        <p>${line.addr}</p>
+                        <p>${line.title}</p>
+                    </span>
+                    <span class="col">
+                        <img src="${line.url}" width="190" height="150" border="0" alt="" />
+                    </span>
+                  </p>
+              </div>
           </li>
         </ul>
       </div>
