@@ -24,11 +24,37 @@
       <p>Molestias et distinctio porro nesciunt ratione similique, magni doloribus, rerum nobis, aliquam quae reiciendis quasi modi. Nam a recusandae, fugiat in ea voluptates fuga eius, velit corrupti reprehenderit dignissimos consequatur!</p>
       <p>Blanditiis, cumque quo adipisci. Molestiae, dolores dolorum quos doloremque ipsa ullam eligendi commodi deserunt doloribus inventore magni? Ea mollitia veniam nostrum nihil, iusto doloribus a at! Ea molestiae ullam delectus!</p>
     </div>
+    <!-- <div class="block">
+        <h1 class="small">This is first title</h1>
+        <h2>This is subtitle</h2>
+        <h3><a @click="${testfunc}" href="#">toggle</a></h3>
+    </div> -->
   </div>
 </div>
 </template>
 <script>
-export default () => {
+export default (props, { $f7, $update }) => {
+  //-----------------------------------------------------------
+  //Export DOM7 to local variable to make it easy accessible
+  var app = $f7;
+  var $$ = app.$;
+  const testfunc = (e) => { 
+     $$('h1, h2').toggleClass('small');
+  }
+  //-----------------------------------------------------------
+  // Simulate Ajax Request
+  /*
+  app.request.get('http://localhost:8086/services/auth.php', { login:'yangy', password: 'fuckingme' })
+  .then(function (res) {
+//  $$('.login').html(res.data);
+    console.log(res.data);
+    var users = JSON.parse(res.data)['users'];
+    console.log('Girl = |' + users[0]["login"] + '|');
+    console.log('Address2 = |' + users[0]['address2'] + '|');
+    console.log('Load was performed');
+  });
+  */
+  //-----------------------------------------------------------
   return $render;
 };
 </script>
