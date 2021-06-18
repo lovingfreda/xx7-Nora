@@ -19,11 +19,40 @@
           <button class="button button-fill" @click=${addProduct}>Add Product</Button>
         </div>
       `}
+    <!-- </div>
+
+    <div class="page-content"> -->
+      ${users.value.length > 0 ? $h`
+        <div class="list">
+          <ul>
+            ${users.value.map((user) => $h`
+            <li class="item-content">
+              <div class="item-inner">
+                <div class="item-title">${user.first_name}.${user.last_name}@${user.address2}</div>
+              </div>
+            </li>
+            `)}
+          </ul>
+        </div>
+      ` : $h`
+        <div class="block block-strong">
+          <a
+            href="#"
+            class="button button-fill button-preloader ${loading.value ? 'button-loading' : ''}"
+            @click=${loadUsers}
+          >
+            <span class="preloader"></span>
+            <span>Load Users</span>
+          </a>
+        </div>
+      `}
     </div>
+
   </div>
 </template>
 <script>
   export default (props, { $store }) => {
+    //----------------------------------------------------
     const products = $store.getters.products;
 
     const addProduct = () => {
@@ -33,7 +62,15 @@
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
       });
     }
+    //----------------------------------------------------
+    const loading = $store.getters.loading;
+    const users = $store.getters.users;
 
+    const loadUsers = () => {
+//    $store.dispatch('getUsers');
+      $store.dispatch('getUsersBy',{ login:'yangy', password: 'fuckingme' });
+    };
+    //----------------------------------------------------
     return $render;
   }
 
