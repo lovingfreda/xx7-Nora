@@ -7,15 +7,21 @@
     </div>
   </div>
   <div class="page-content">
-    <div class="block-title">Form Example</div>
+    <div class="block-title">个人资料</div>
+
+<form action="http://localhost:8086/api/EditUser.php?user_id=3" method="POST" class="list form-ajax-submit" id="my-form">
+<!-- Laravel 的请求处理系统要求所有非 GET 和 POST 的请求全部通过 POST 请求来执行，再将真正的方法使用 _method 表单字段携带给后端。 -->
+
+    ${users.value.length > 0 ? $h`
     <div class="list no-hairlines-md">
+      ${users.value.map((user) => $h`
       <ul>
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
-              <div class="item-title item-label">Name</div>
+              <div class="item-title item-label">姓名</div>
               <div class="item-input-wrap">
-                <input type="text" placeholder="Your name"/>
+                <input type="text" name="first_name" placeholder="Your name"/>
               </div>
             </div>
           </div>
@@ -23,9 +29,9 @@
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
-              <div class="item-title item-label">E-mail</div>
+              <div class="item-title item-label">昵称</div>
               <div class="item-input-wrap">
-                <input type="email" placeholder="E-mail"/>
+                <input type="text" name="title" placeholder="Your title"/>
               </div>
             </div>
           </div>
@@ -33,9 +39,9 @@
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
-              <div class="item-title item-label">URL</div>
+              <div class="item-title item-label">电子邮箱</div>
               <div class="item-input-wrap">
-                <input type="url" placeholder="URL"/>
+                <input type="email" name="email" placeholder="E-mail"/>
               </div>
             </div>
           </div>
@@ -43,9 +49,9 @@
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
-              <div class="item-title item-label">Password</div>
+              <div class="item-title item-label">手机号</div>
               <div class="item-input-wrap">
-                <input type="password" placeholder="Password"/>
+                <input type="tel" name="mobile" placeholder="Phone"/>
               </div>
             </div>
           </div>
@@ -53,21 +59,11 @@
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
-              <div class="item-title item-label">Phone</div>
+              <div class="item-title item-label">性别</div>
               <div class="item-input-wrap">
-                <input type="tel" placeholder="Phone"/>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-              <div class="item-title item-label">Gender</div>
-              <div class="item-input-wrap">
-                <select>
-                  <option>Male</option>
-                  <option>Female</option>
+                <select name="gender">
+                  <option value="1">Male</option>
+                  <option value="2">Female</option>
                 </select>
               </div>
             </div>
@@ -76,9 +72,87 @@
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
-              <div class="item-title item-label">Birth date</div>
+              <div class="item-title item-label">年龄</div>
               <div class="item-input-wrap">
-                <input type="date" placeholder="Birth day" value="2014-04-30"/>
+                <select name="age">
+                  <option value="1">less than 13岁</option>
+                  <option value="2">13-17岁</option>
+                  <option value="3">18-24岁</option>
+                  <option value="4">25-34岁</option>
+                  <option value="5">35-50岁</option>
+                  <option value="6">51-65岁</option>
+                  <option value="7">over 65岁</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">语言</div>
+              <div class="item-input-wrap">
+                <select name="language">
+                  <option value="1">English</option>
+                  <option value="2">French</option>
+                  <option value="3">German</option>
+                  <option value="4">Chinese</option>
+                  <option value="5">Japanese</option>
+                  <option value="6">Russian</option>
+                  <option value="7">Polish</option>
+                  <option value="8">Turkish</option>
+                  <option value="9">Yiddish</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">所在城市</div>
+              <div class="item-input-wrap">
+                <input type="tel" name="city" placeholder="City"/>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">地址处所</div>
+              <div class="item-input-wrap">
+                <input type="tel" name="address1" placeholder="Address Line 1"/>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label"></div>
+              <div class="item-input-wrap">
+                <input type="tel" name="address2" placeholder="Address Line 2"/>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label"></div>
+              <div class="item-input-wrap">
+                <input type="tel" name="address3" placeholder="Address Line 3"/>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="align-top">
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">兴趣爱好</div>
+              <div class="item-input-wrap">
+                <textarea placeholder="Bio" name="notes" class="resizable"></textarea>
               </div>
             </div>
           </div>
@@ -86,174 +160,107 @@
         <li>
           <div class="item-content">
             <div class="item-inner">
-              <div class="item-title">Toggle</div>
+              <div class="item-title">物联设备</div>
               <div class="item-after">
                 <label class="toggle toggle-init">
-                  <input type="checkbox"/>
-                  <span class="toggle-icon"></span>
+                  <input type="checkbox" name="ilot" value="yes" />
+                  <i class="toggle-icon"></i>
                 </label>
               </div>
             </div>
           </div>
         </li>
-        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-              <div class="item-title item-label">Slider</div>
-              <div class="item-input-wrap">
-                <div class="range-slider range-slider-init" data-label="true">
-                  <input type="range" value="50" min="0" max="100" step="1"/>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="align-top">
-          <div class="item-content item-input">
-            <div class="item-inner">
-              <div class="item-title item-label">Textarea</div>
-              <div class="item-input-wrap">
-                <textarea placeholder="Bio"></textarea>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="align-top">
-          <div class="item-content item-input">
-            <div class="item-inner">
-              <div class="item-title item-label">Resizable</div>
-              <div class="item-input-wrap">
-                <textarea placeholder="Bio" class="resizable"></textarea>
-              </div>
-            </div>
-          </div>
-        </li>
       </ul>
+      `)}
     </div>
-    <div class="block-title">Buttons</div>
+    ` : $h`
+    <div class="block block-strong">请首先登录系统再修改个人资料</div>
+    `}
+</form>
+
+    <!-- Buttons Here -->
+    <div class="block block-strong row">
+      <div class="col"><a class="button button-fill fill-form-from-data-a"  href="#">Fill Form Eva</a></div>
+      <div class="col"><a class="button button-fill fill-form-from-data-c"  href="#">Fill Form Store</a></div>
+      <div class="col"><a class="button button-fill fill-form-from-data-b"  href="#">Fill Form YangY</a></div>
+    </div>
+    <!-- END OF Buttons  -->
+    <!-- <div class="block-title">Buttons</div> -->
     <div class="block block-strong">
-      <p class="row">
+      <!-- <p class="row">
         <a href="#" class="col button">Button</a>
         <a href="#" class="col button button-fill">Fill</a>
+      </p> -->
+      <p class="row">
+        <a href="#" class="col button button-raised">取消</a>
+        <a href="#" class="col button button-raised button-fill">保存</a>
       </p>
       <p class="row">
-        <a href="#" class="col button button-raised">Raised</a>
-        <a href="#" class="col button button-raised button-fill">Raised Fill</a>
       </p>
-      <p class="row">
-        <a href="#" class="col button button-round">Round</a>
-        <a href="#" class="col button button-round button-fill">Round Fill</a>
-      </p>
-      <p class="row">
-        <a href="#" class="col button button-outline">Outline</a>
-        <a href="#" class="col button button-round button-outline">Outline Round</a>
-      </p>
-      <p class="row">
-        <a href="#" class="col button button-small button-outline">Small</a>
-        <a href="#" class="col button button-small button-round button-outline">Small Round</a>
-      </p>
-      <p class="row">
-        <a href="#" class="col button button-small button-fill">Small</a>
-        <a href="#" class="col button button-small button-round button-fill">Small Round</a>
-      </p>
-      <p class="row">
-        <a href="#" class="col button button-large button-raised">Large</a>
-        <a href="#" class="col button button-large button-fill button-raised">Large Fill</a>
-      </p>
+    </div>
 
-      <p class="row">
-        <a href="#" class="col button button-large button-fill button-raised color-red">Large Red</a>
-        <a href="#" class="col button button-large button-fill button-raised color-green">Large Green</a>
-      </p>
-
-    </div>
-    <div class="block-title">Checkbox group</div>
-    <div class="list">
-      <ul>
-        <li>
-          <label class="item-checkbox item-content">
-            <input type="checkbox" name="checkbox" value="Books" checked="checked"/>
-            <i class="icon icon-checkbox"></i>
-            <div class="item-inner">
-              <div class="item-title">Books</div>
-            </div>
-          </label>
-        </li>
-        <li>
-          <label class="item-checkbox item-content">
-            <input type="checkbox" name="checkbox" value="Movies"/>
-            <i class="icon icon-checkbox"></i>
-            <div class="item-inner">
-              <div class="item-title">Movies</div>
-            </div>
-          </label>
-        </li>
-        <li>
-          <label class="item-checkbox item-content">
-            <input type="checkbox" name="checkbox" value="Food"/>
-            <i class="icon icon-checkbox"></i>
-            <div class="item-inner">
-              <div class="item-title">Food</div>
-            </div>
-          </label>
-        </li>
-        <li>
-          <label class="item-checkbox item-content">
-            <input type="checkbox" name="checkbox" value="Drinks"/>
-            <i class="icon icon-checkbox"></i>
-            <div class="item-inner">
-              <div class="item-title">Drinks</div>
-            </div>
-          </label>
-        </li>
-      </ul>
-    </div>
-    <div class="block-title">Radio buttons group</div>
-    <div class="list">
-      <ul>
-        <li>
-          <label class="item-radio item-content">
-            <input type="radio" name="radio" value="Books" checked="checked"/>
-            <i class="icon icon-radio"></i>
-            <div class="item-inner">
-              <div class="item-title">Books</div>
-            </div>
-          </label>
-        </li>
-        <li>
-          <label class="item-radio item-content">
-            <input type="radio" name="radio" value="Movies"/>
-            <i class="icon icon-radio"></i>
-            <div class="item-inner">
-              <div class="item-title">Movies</div>
-            </div>
-          </label>
-        </li>
-        <li>
-          <label class="item-radio item-content">
-            <input type="radio" name="radio" value="Food"/>
-            <i class="icon icon-radio"></i>
-            <div class="item-inner">
-              <div class="item-title">Food</div>
-            </div>
-          </label>
-        </li>
-        <li>
-          <label class="item-radio item-content">
-            <input type="radio" name="radio" value="Drinks"/>
-            <i class="icon icon-radio"></i>
-            <div class="item-inner">
-              <div class="item-title">Drinks</div>
-            </div>
-          </label>
-        </li>
-      </ul>
-    </div>
   </div>
 </div>
 </template>
 <script>
-export default () => {
-  return $render;
+export default (props, { $, $on, $f7, $store }) => {
+    //----------------------------------------------------
+    const loading = $store.getters.loading;
+    const users   = $store.getters.users;
+    //----------------------------------------------------
+    // Component Data
+
+    // Component Methods
+
+    // Lifecycle
+
+    // Page Events
+    $on('pageInit', () => {
+        // ------------------------------    Request Data from AJAX   -----------------------------------------
+        console.log("xxxxx Pretty Girls! " + users.value.length);
+
+        // -------------------------------------    DOM Events  -----------------------------------------
+        $('.fill-form-from-data-a').on('click', function(){
+          var formData = {
+            'city': "上海浦东",
+            'title': "白领丽人",
+            'age': 4,
+            'notes': "停车坐爱枫林晚，霜叶红于二月花",
+          }
+          $f7.form.fillFromData('#my-form', formData);
+        });
+        $('.fill-form-from-data-b').on('click', function(){
+          var formData = {
+            'city': "北京三里屯",
+            'title': "美貌少妇",
+            'age': 6,
+            'notes': "花径不曾缘客扫，蓬门今始为君开",
+          }
+          $f7.form.fillFromData('#my-form', formData);
+        });
+        $('.fill-form-from-data-c').on('click', function(){
+          console.log("xxxxx YangY OOXX! " + users.value.length + '|' + users.value[0].first_name);
+          var formData = {
+                'first_name': users.value[0].first_name,
+                'title':    users.value[0].title,
+                'email':    users.value[0].email,
+                'mobile':   users.value[0].mobile,
+                'gender':   users.value[0].gender_id,
+                'age':      users.value[0].age_id,
+                'language': users.value[0].language_id,
+                'city':     users.value[0].city,
+                'address1': users.value[0].address1,
+                'address2': users.value[0].address2,
+                'address3': users.value[0].address3,
+                'notes':    users.value[0].notes,
+                'ilot':     ['yes'],
+          }
+          $f7.form.fillFromData('#my-form', formData);
+        });
+        // -------------------------------------    App Events  -----------------------------------------
+    });
+
+    //----------------------------------------------------
+    return $render;
 };
 </script>
