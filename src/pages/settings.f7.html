@@ -9,7 +9,7 @@
   <div class="page-content">
     <div class="block-title">个人资料</div>
 
-<form action="http://localhost:8086/api/EditUser.php?user_id=3" method="POST" class="list form-ajax-submit" id="my-form">
+<form action="http://localhost:8086/api/EditUser.php?user_id=3&ccsForm=users%3AEdit" method="POST" class="list form-ajax-submit" id="my-form">
 <!-- Laravel 的请求处理系统要求所有非 GET 和 POST 的请求全部通过 POST 请求来执行，再将真正的方法使用 _method 表单字段携带给后端。 -->
 
     ${users.value.length > 0 ? $h`
@@ -51,7 +51,7 @@
             <div class="item-inner">
               <div class="item-title item-label">手机号</div>
               <div class="item-input-wrap">
-                <input type="tel" name="mobile" placeholder="Phone"/>
+                <input type="tel" name="phone_home" placeholder="Phone"/>
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@
             <div class="item-inner">
               <div class="item-title item-label">性别</div>
               <div class="item-input-wrap">
-                <select name="gender">
+                <select name="gender_id">
                   <option value="1">Male</option>
                   <option value="2">Female</option>
                 </select>
@@ -74,7 +74,7 @@
             <div class="item-inner">
               <div class="item-title item-label">年龄</div>
               <div class="item-input-wrap">
-                <select name="age">
+                <select name="age_id">
                   <option value="1">less than 13岁</option>
                   <option value="2">13-17岁</option>
                   <option value="3">18-24岁</option>
@@ -92,7 +92,7 @@
             <div class="item-inner">
               <div class="item-title item-label">语言</div>
               <div class="item-input-wrap">
-                <select name="language">
+                <select name="language_id">
                   <option value="1">English</option>
                   <option value="2">French</option>
                   <option value="3">German</option>
@@ -173,31 +173,34 @@
       </ul>
       `)}
     </div>
+    <!-- Buttons Submit Starting -->
+    <!-- <div class="block-title">Buttons</div>
+    <div class="block block-strong">
+      <p class="row">
+        <a href="#" class="col button button-raised color-green">取消</a>
+        <a href="#" class="col button button-raised button-fill color-red">保存</a>
+      </p>
+      <p class="row">
+      </p>
+    </div> -->
+    <div class="block block-strong">
+      <p class="row">
+        <button class="col button button-fill color-red" type="submit">Save Data</button>
+      </p>
+    </div>
+    <!-- Buttons Submit Ending -->
     ` : $h`
-    <div class="block block-strong">请首先登录系统再修改个人资料</div>
+        <div class="block block-strong">请首先登录系统再修改个人资料</div>
     `}
 </form>
 
-    <!-- Buttons Here -->
+    <!-- Buttons Fill Form Data Here -->
     <div class="block block-strong row">
       <div class="col"><a class="button button-fill fill-form-from-data-a"  href="#">Fill Form Eva</a></div>
       <div class="col"><a class="button button-fill fill-form-from-data-c"  href="#">Fill Form Store</a></div>
       <div class="col"><a class="button button-fill fill-form-from-data-b"  href="#">Fill Form YangY</a></div>
     </div>
-    <!-- END OF Buttons  -->
-    <!-- <div class="block-title">Buttons</div> -->
-    <div class="block block-strong">
-      <!-- <p class="row">
-        <a href="#" class="col button">Button</a>
-        <a href="#" class="col button button-fill">Fill</a>
-      </p> -->
-      <p class="row">
-        <a href="#" class="col button button-raised">取消</a>
-        <a href="#" class="col button button-raised button-fill">保存</a>
-      </p>
-      <p class="row">
-      </p>
-    </div>
+    <!-- END OF Fill Form Data Buttons  -->
 
   </div>
 </div>
@@ -224,7 +227,8 @@ export default (props, { $, $on, $f7, $store }) => {
           var formData = {
             'city': "上海浦东",
             'title': "白领丽人",
-            'age': 4,
+            'age_id': 3,
+            'language_id': 1,
             'notes': "停车坐爱枫林晚，霜叶红于二月花",
           }
           $f7.form.fillFromData('#my-form', formData);
@@ -233,7 +237,8 @@ export default (props, { $, $on, $f7, $store }) => {
           var formData = {
             'city': "北京三里屯",
             'title': "美貌少妇",
-            'age': 6,
+            'age_id': 8,
+            'language_id': 1,
             'notes': "花径不曾缘客扫，蓬门今始为君开",
           }
           $f7.form.fillFromData('#my-form', formData);
@@ -241,13 +246,13 @@ export default (props, { $, $on, $f7, $store }) => {
         $('.fill-form-from-data-c').on('click', function(){
           console.log("xxxxx YangY OOXX! " + users.value.length + '|' + users.value[0].first_name);
           var formData = {
-                'first_name': users.value[0].first_name,
+              'first_name': users.value[0].first_name,
                 'title':    users.value[0].title,
                 'email':    users.value[0].email,
-                'mobile':   users.value[0].mobile,
-                'gender':   users.value[0].gender_id,
-                'age':      users.value[0].age_id,
-                'language': users.value[0].language_id,
+              'phone_home': users.value[0].phone_home,
+                'gender_id':   users.value[0].gender_id,
+                'age_id':      users.value[0].age_id,
+                'language_id': users.value[0].language_id,
                 'city':     users.value[0].city,
                 'address1': users.value[0].address1,
                 'address2': users.value[0].address2,
