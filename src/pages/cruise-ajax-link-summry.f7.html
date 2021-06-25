@@ -72,7 +72,7 @@
                 <div class="navbar-inner">
                   <div class="title">${link.name}</div>
                   <div class="right">
-                    <a @click="${setAccessHistory}" href="#" class="link popup-close" id="${link.id}">Close</a>
+                    <a @click="${setAccessHistory}" href="#" class="link popup-close" id="${link.id}">Close<p id="KKK-${link.id}" data-id="${link.id}" data-name="${link.name}" data-desc="${link.keywords}"></p></a>
                   </div>
                 </div>
               </div>
@@ -181,11 +181,15 @@ console.log("idx = " + idx);             // Debug..
     const setAccessHistory = (e) => {
         var str = new String(e.target.id);      // Biz_Link_4|Biz_Link_5|Biz_Link_6.....
         console.log("push...e.target.id = " + str);    // Debug..
+        console.log("push...data:name = " + $('p#KKK-'+str).data('name'));    
+        console.log("push...data:desc = " + $('p#KKK-'+str).data('desc'));    
+        var tmpName = $('p#KKK-'+str).data('name');
+        var tmpDesc = $('p#KKK-'+str).data('desc');
 
       $store.dispatch('addProduct', {
         id: ''+str,  // MUST be string, so we using '' to + it
-        title: 'iPhone 9112-'+str,
-        description: 'dolorem corrupti hic modi praesentium unde saepe'
+        title: tmpName,
+        description: tmpDesc
       });
 
     }
