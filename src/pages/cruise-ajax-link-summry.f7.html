@@ -72,7 +72,7 @@
                 <div class="navbar-inner">
                   <div class="title">${link.name}</div>
                   <div class="right">
-                    <a href="#" class="link popup-close">Close</a>
+                    <a @click="${setAccessHistory}" href="#" class="link popup-close" id="${link.id}">Close</a>
                   </div>
                 </div>
               </div>
@@ -121,7 +121,11 @@
 </div>
 </template>
 <script>
-export default (props, { $f7, $update }) => {
+export default (props, { $, $update, $f7, $store }) => {
+    //----------------------------------------------------
+    const synday = $store.getters.synday;
+    const access = $store.getters.access;
+    //----------------------------------------------------
     const user = props.catg;
 
 // Important !!! a> we set this var in Route   b> MUST using JSON.parse()
@@ -171,6 +175,19 @@ console.log("idx = " + idx);             // Debug..
 
       //Open photo browser on click
       myPhotoBrowserPage.open();
+    }
+
+    //Set Gobal Access History Flag
+    const setAccessHistory = (e) => {
+        var str = new String(e.target.id);      // Biz_Link_4|Biz_Link_5|Biz_Link_6.....
+        console.log("push...e.target.id = " + str);    // Debug..
+
+      $store.dispatch('addProduct', {
+        id: ''+str,  // MUST be string, so we using '' to + it
+        title: 'iPhone 9112-'+str,
+        description: 'dolorem corrupti hic modi praesentium unde saepe'
+      });
+
     }
 // ====================================================================
 

@@ -5,6 +5,10 @@ const store = createStore({
   state: {
     loading: false,
     users: [],
+
+    synday: '2021/01/01',
+    access: [],
+
     products: [
       {
         id: '1',
@@ -30,6 +34,12 @@ const store = createStore({
     users({ state }) {
       return state.users;
     },
+    synday({ state }) {
+      return state.synday;
+    },
+    access({ state }) {
+      return state.access;
+    },
     products({ state }) {
       return state.products;
     }
@@ -53,6 +63,9 @@ const store = createStore({
               state.users = users['users'];
             })
       }, 3000);
+    },
+    addAccess({ state }, access) {
+      state.access = [...state.access, access];
     },
     addProduct({ state }, product) {
       state.products = [...state.products, product];
