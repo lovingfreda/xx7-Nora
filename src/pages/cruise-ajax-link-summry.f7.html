@@ -185,11 +185,13 @@ console.log("idx = " + idx);             // Debug..
         console.log("push...data:desc = " + $('p#KKK-'+str).data('desc'));    
         var tmpName = $('p#KKK-'+str).data('name');
         var tmpDesc = $('p#KKK-'+str).data('desc');
+        var tmpNow  = $f7.utils.now();
 
       $store.dispatch('addProduct', {
         id: ''+str,  // MUST be string, so we using '' to + it
         title: tmpName,
         description: tmpDesc
+//      description: tmpNow + '|' + tmpDesc
       });
 
     }
