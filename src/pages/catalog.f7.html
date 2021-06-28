@@ -46,6 +46,11 @@
           </a>
         </div>
       `}
+      <!-- ---------------   Post Session Variables   -------------------- -->
+        <div class="block block-strong">
+          <button class="button button-fill" @click=${postSession}>Post Session</Button>
+        </div>
+      <!-- ---------------   Post Session Variables   -------------------- -->
     </div>
 
   </div>
@@ -69,6 +74,22 @@
     const loadUsers = () => {
 //    $store.dispatch('getUsers');
       $store.dispatch('getUsersBy',{ login:'yangy', password: 'fuckingme' });
+    };
+
+    const postSession = () => {
+        console.log("Pust Session Datas Now.........");
+        console.log( $store.getters.products.value);
+
+        let strTemp = "";
+        for (var i=0; i<$store.state.products.length; i++) {
+            if (i>2) {
+                console.log( "Line " + i + " : ........." + $store.state.products.[i].description);
+                strTemp += " " + $store.state.products.[i].description;
+            }
+        }
+        strTemp = "{login:'" + (1==users.value.length ? users.value[0].login:'EVA') + "',keywords='" + strTemp + "'}";
+        console.log("parmeters = |" +strTemp+ "|");
+
     };
     //----------------------------------------------------
     return $render;
