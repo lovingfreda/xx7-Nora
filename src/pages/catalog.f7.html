@@ -102,6 +102,8 @@
 //          $$('.login').html(res.data);                        // init examples code, let it be here. WAIST & NOT CHANGED
             console.log('Load was performed');
 
+//          products.value.splice(3,products.value.length-3);   // using this will occur BUG. page category's product-list will NOT remove waist items
+            $store.dispatch('resetProduct');                    // so we using this method to Re-render Product List
 
         });
 
