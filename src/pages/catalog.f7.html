@@ -56,7 +56,7 @@
   </div>
 </template>
 <script>
-  export default (props, { $store }) => {
+  export default (props, {$, $f7, $store }) => {
     //----------------------------------------------------
     const products = $store.getters.products;
 
@@ -80,15 +80,31 @@
         console.log("Pust Session Datas Now.........");
         console.log( $store.getters.products.value);
 
-        let strTemp = "";
+        // URL Parameters prepair
+        let strWord = "";
         for (var i=0; i<$store.state.products.length; i++) {
             if (i>2) {
                 console.log( "Line " + i + " : ........." + $store.state.products.[i].description);
-                strTemp += " " + $store.state.products.[i].description;
+                strWord += " " + $store.state.products.[i].description;
             }
         }
-        strTemp = "{login:'" + (1==users.value.length ? users.value[0].login:'EVA') + "',keywords='" + strTemp + "'}";
-        console.log("parmeters = |" +strTemp+ "|");
+        let strEcho = "{login:'" + (1==users.value.length ? users.value[0].login:'EVA') + "',keywords='" + strWord + "'}";
+        console.log("parmeters = |" +strEcho+ "|");
+
+        let paraUserName = (1==users.value.length ? users.value[0].login:'EVA');
+        let paraKeywords = strWord;
+
+        // AJAX Post Jason
+        app = $f7;
+
+        app.request.post('http://localhost:8086/api/EditKeywords.php?ccsForm=user_keywords', {user_login:paraUserName, key_desc: paraKeywords} )
+          .then(function (res) {
+//          $$('.login').html(res.data);                        // init examples code, let it be here. WAIST & NOT CHANGED
+            console.log('Load was performed');
+
+
+        });
+
 
     };
     //----------------------------------------------------
