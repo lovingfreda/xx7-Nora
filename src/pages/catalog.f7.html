@@ -73,10 +73,11 @@
 
     const loadUsers = () => {
 //    $store.dispatch('getUsers');
-      $store.dispatch('getUsersBy',{ login:'yangy', password: 'fuckingme' });
+      $store.dispatch('getUsersBy',{ login:'yangy', password: 'lovingme' });
     };
 
     const postSession = () => {
+
         console.log("Pust Session Datas Now.........");
         console.log( $store.getters.products.value);
 
@@ -95,9 +96,9 @@
         let paraKeywords = strWord;
 
         // AJAX Post Jason
-        app = $f7;
+        var app = $f7;
 
-        app.request.post('http://localhost:8086/api/EditKeywords.php?ccsForm=user_keywords', {user_login:paraUserName, key_desc: paraKeywords} )
+        app.request.post('http://portal.kideduc.com/api/EditKeywords.php?ccsForm=user_keywords', {user_login:paraUserName, key_desc: paraKeywords} )
           .then(function (res) {
 //          $$('.login').html(res.data);                        // init examples code, let it be here. WAIST & NOT CHANGED
             console.log('Load was performed');

@@ -56,7 +56,7 @@ const store = createStore({
     getUsersBy({ state }, { login , password }) {
       state.loading = true;
       setTimeout(() => {
-          fetch(`http://localhost:8086/services/auth.php?login=${login}&password=${password}`)
+          fetch(`http://portal.kideduc.com/services/auth.php?login=${login}&password=${password}`)
             .then((res) => res.json())
             .then((users) => {
               state.loading = false;
