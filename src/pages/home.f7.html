@@ -150,6 +150,7 @@
         </div>
       </div>
 
+<!-- 
       <div class="list links-list">
         <ul>
           <li>
@@ -163,11 +164,17 @@
           </li>
         </ul>
       </div>
+ -->
     </div>
   </div>
 </template>
 <script>
-export default () => {
+export default (props, {$f7, $on, $store}) => {
+  //----------------------------------------------------
+  $on('pageInit', () => {
+      console.log("home.f7  pageInit! ");
+  })
+  //----------------------------------------------------
   return $render;
 }
 </script>

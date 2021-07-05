@@ -56,8 +56,19 @@
   </div>
 </template>
 <script>
-  export default (props, {$, $f7, $store }) => {
-    //----------------------------------------------------
+  export default (props, {$, $on, $f7, $store }) => {
+    // Component Data
+
+    // Component Methods
+
+    // Lifecycle
+
+    // Page Events
+    $on('pageInit', () => {
+        console.log("category.f7  pageInit! ");
+    });
+
+    // -------------------------------------    App Events  -----------------------------------------
     const products = $store.getters.products;
 
     const addProduct = () => {

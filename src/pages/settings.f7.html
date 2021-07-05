@@ -9,7 +9,8 @@
   <div class="page-content">
     <div class="block-title">个人资料</div>
 
-<form action="http://portal.kideduc.com/api/EditUser.php?user_id=3&ccsForm=users%3AEdit" method="POST" class="list form-ajax-submit" id="my-form">
+<!-- Form 的URL Get参数集合里需要传入user_id=[Edit:ID]，从而保证CCS框架的代码可以正常做Update -->
+<form action="http://portal.kideduc.com/api/EditUser.php?user_id=${users.value.length > 0 ? users.value[0].id : -1}&ccsForm=users%3AEdit" method="POST" class="list form-ajax-submit" id="my-form">
 <!-- Laravel 的请求处理系统要求所有非 GET 和 POST 的请求全部通过 POST 请求来执行，再将真正的方法使用 _method 表单字段携带给后端。 -->
 
     ${users.value.length > 0 ? $h`
@@ -194,11 +195,12 @@
     `}
 </form>
 
-    <!-- Buttons Fill Form Data Here -->
+    <!-- Buttons Fill Form Data Here style="height:0px" -->
     <div class="block block-strong row">
       <div class="col"><a class="button button-fill fill-form-from-data-a"  href="#">Fill Eva</a></div>
       <div class="col"><a class="button button-fill fill-form-from-data-c"  href="#">Fill Store</a></div>
       <div class="col"><a class="button button-fill fill-form-from-data-b"  href="#">Fill YangY</a></div>
+      <!-- <div class="col"><a class="button button-fill fill-form-from-data-k"  href="#">testing</a></div> -->
     </div>
     <!-- END OF Fill Form Data Buttons  -->
 
@@ -227,7 +229,9 @@ export default (props, { $, $on, $f7, $store }) => {
           var formData = {
             'city': "上海浦东",
             'title': "白领丽人",
+            'gender_id': 2,
             'age_id': 3,
+            'email': "eva@kideduc.com",
             'language_id': 1,
             'notes': "停车坐爱枫林晚，霜叶红于二月花",
           }
@@ -237,7 +241,9 @@ export default (props, { $, $on, $f7, $store }) => {
           var formData = {
             'city': "北京三里屯",
             'title': "美貌少妇",
+            'gender_id': 2,
             'age_id': 4,
+            'email': "yangy@kideduc.com",
             'language_id': 4,
             'notes': "花径不曾缘客扫，蓬门今始为君开",
           }
@@ -262,6 +268,12 @@ export default (props, { $, $on, $f7, $store }) => {
           }
           $f7.form.fillFromData('#my-form', formData);
         });
+
+        /*
+        $('.fill-form-from-data-k').on('click', function(){
+          console.log("Form Action URL:! " + $f7.$('form#my-form').attr('action'));
+        }); */
+
         // -------------------------------------    App Events  -----------------------------------------
     });
 

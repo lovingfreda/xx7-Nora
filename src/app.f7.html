@@ -190,7 +190,7 @@
   </div>
 </template>
 <script>
-  export default (props, { $f7, $update }) => {
+  export default (props, { $f7, $update, $store }) => {
 
     // Login screen demo data
     let username = '';
@@ -215,6 +215,77 @@
         pageBackLinkText: 'Back'
     });
 
+    $f7.on('panelOpen', function (panel) {
+      console.log('Panel ' + panel.side + ' opened');
+    });
+
+    $f7.on('connection', function (isOnline) {
+      if (isOnline) {
+        console.log('app is online now');
+      } else {
+        console.log('app is offline now');
+      }
+    });
+
+    $f7.on('darkThemeChange', function (isDark) {
+      if (isDark) {
+        console.log('color scheme changed to Dark');
+      } else {
+        console.log('color scheme changed to Light');
+      }
+    });
+
+    $f7.on('tabShow', function (tabEL) {
+      if (tabEL) {
+        //console.log('Tab becomes visible/active : ' + tabEL.id);
+        // if come into Tab <Settings>, we should do Login operator if necessary
+        if (tabEL.id == 'view-settings'){
+             // -----------------------  Step.1 Login Necessary --------------------------------
+              const flag = $store.getters.loading;
+              if (!flag.value)  //  flag loading == false means NOT login yet
+              {
+                // ---   Open Login Screen Automatic ----
+                $f7.loginScreen.open('.login-screen', true);
+              }
+             // --------------------------------------------------------------------------------
+        }
+      } else {
+        console.log('Tab is unknown status in <tabShow>' + tabEL.id);
+      }
+    });
+
+/*
+    $f7.on('tabHide', function (tabEL) {
+      if (tabEL) {
+        console.log('Tab becomes hidden/inactive : ' + tabEL.id);
+      } else {
+        console.log('Tab is unknown status in <tabHide>' + tabEL.id);
+      }
+    }); */
+
+/*
+    $f7.on('popupClose', function (popup) {
+      // do something on popup close
+      console.log('pop up closing..... : ' + popup.el.id);
+    }); */
+
+    // ==================================================================================
+    // Important !!! Important !!! Important !!! Important !!! Important !!! Important !!! 2021.07.05 15:49 Tony: Coding many many times!
+    // ==================================================================================
+    $f7.on('loginScreenClosed', function (loginScreen) {
+      // do something on popup close
+      console.log('login screen closed..... id=|' + loginScreen.el.id +'|');
+
+      const flag = $store.getters.loading;
+      if (flag.value)
+      {   // Dymatic Automatic Click Button <Load Store> in Tab-Settings
+          //------------------------------------------------------------
+          loginScreen.app.$('.fill-form-from-data-c').click();      //  BUTTON Click ******
+      }
+
+    }); 
+    // ==================================================================================
+
     const updateUsername = (e) => {
       username = e.target.value;
       $update();
@@ -224,6 +295,12 @@
       $update();
     }
     const alertLoginData = () => {
+
+      // Input Validation
+      if (username == "" || password == "") {
+          console.log("Error: username or password mustn't be null!");
+          return;
+      }       // Easy Version of check, should be more carefully later
 
       //Export DOM7 to local variable to make it easy accessible
       var app = $f7;
@@ -238,12 +315,14 @@
       };
 
       // Simulate Ajax Request
-      app.request.get('http://portal.kideduc.com/services/auth.php', { login:'yangy', password: 'lovingme' })
+      app.request.get('http://portal.kideduc.com/services/auth.php', { login: username, password: password })
       .then(function (res) {
-//      $$('.login').html(res.data);
+//////  $$('.login').html(res.data);
         console.log(res.data);
 
         var users = JSON.parse(res.data)['users'];
+        if (users.length < 1) { return; }  // sometimes we got users[0], sometimes got users[NULL], so check and verify
+
         vUser.firstName = users[0]["first_name"];
         vUser.lastName  = users[0]["last_name"];
         vUser.login     = users[0]["login"];
@@ -255,7 +334,12 @@
         if (username == vUser.login)
         {
           $f7.dialog.alert('恭喜您登录成功 !', () => {
+            // Saving data into Store-Storage  -------------------------
+            $store.state.users = users;
+            $store.state.loading = true;
+            // Close Login Screen  -------------------------------------
             $f7.loginScreen.close();
+            // ---------------------------------------------------------
           });
         }else {
           console.log('left username=' + username);
