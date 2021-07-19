@@ -94,8 +94,13 @@
             <span class="tabbar-label">首页</span>
           </a>
           <a href="#view-catalog" class="tab-link">
-            <i class="icon f7-icons if-not-md">square_list_fill<span class="badge color-red">5</span></i>
-            <i class="icon material-icons if-md">view_list<span class="badge color-red">5</span></i>
+            <i class="icon f7-icons if-not-md">square_list_fill</i>
+            <i class="icon material-icons if-md">view_list</i>
+            <span class="tabbar-label">历史</span>
+          </a>
+          <a href="#view-schedule" class="tab-link">
+            <i class="icon f7-icons if-not-md">today_fill<span class="badge color-red">5</span></i>
+            <i class="icon material-icons if-md">today<span class="badge color-red">5</span></i>
             <span class="tabbar-label">日程</span>
           </a>
           <a href="#view-settings" class="tab-link">
@@ -114,6 +119,11 @@
       <!-- Catalog View -->
       <div id="view-catalog" class="view view-init tab" data-name="catalog" data-url="/catalog/">
         <!-- Catalog page will be loaded here dynamically from /catalog/ route -->
+      </div>
+
+      <!-- Catalog View -->
+      <div id="view-schedule" class="view view-init tab" data-name="schedule" data-url="/schedule/">
+        <!-- Schedule page will be loaded here dynamically from /schedule/ route -->
       </div>
 
       <!-- Settings View -->

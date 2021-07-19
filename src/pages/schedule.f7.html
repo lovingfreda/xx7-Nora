@@ -1,0 +1,311 @@
+<template>
+  <div class="page" data-name="catalog">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="title">Schedule</div>
+        <div class="right">
+          <a class="link" @click=${togglePosition}>
+            <i class="md-only icon material-icons rotate-icon">compare_arrows</i>
+            <i class="if-not-md icon f7-icons">arrow_up_arrow_down_circle_fill</i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- -----------Tabbar With Labels--------------- -->
+    <div class="toolbar tabbar-labels toolbar-top">
+      <div class="toolbar-inner">
+        <a href="#tab-1" class="tab-link tab-link-active">
+          <i class="icon f7-icons if-not-md">envelope_fill</i>
+          <i class="icon material-icons md-only">email</i>
+          <span class="tabbar-label">活动日程</span>
+        </a>
+        <a href="#tab-2" class="tab-link">
+          <i class="icon f7-icons if-not-md">today_fill</i>
+          <i class="icon material-icons md-only">today</i>
+          <span class="tabbar-label">我的安排</span>
+        </a>
+        <a href="#tab-3" class="tab-link">
+          <i class="icon f7-icons if-not-md">cloud_upload_fill<span class="badge color-red">5</span></i>
+          <i class="icon material-icons md-only">file_upload<span class="badge color-red">5</span></i>
+          <span class="tabbar-label">推荐</span>
+        </a>
+      </div>
+    </div>
+    <!-- ---------------------------------------------- -->
+
+    <div class="tabs">
+      <div class="page-content tab tab-active" id="tab-1">
+        <div class="block">
+          <p><b>Tab 1 content</b></p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quos asperiores ut, odio numquam ab, qui,
+            alias adipisci in magni reiciendis reprehenderit. Labore esse quae ut tempore consequatur, reprehenderit
+            similique!</p>
+        </div>
+        <!-- ============================================== -->
+        <!--
+        Additional "timeline-horizontal" class to enable Horizontal timeline
+        Additional "col-50" to define column width (50%)
+        Additional "tablet-20" to define column width for tablets (20%)
+        -->
+        <div class="block-title">timeline-horizontal</div>
+        <div class="timeline timeline-horizontal col-50 tablet-20">
+          <!-- Timeline Item (Day) -->
+          <div class="timeline-item">
+            <div class="timeline-item-date">21 <small>DEC</small></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-inner">
+                <div class="timeline-item-time">12:56</div>
+                <div class="timeline-item-title">Title 1</div>
+                <div class="timeline-item-subtitle">Subtitle 1</div>
+                <div class="timeline-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+              </div>
+              ...
+              <div class="timeline-item-inner">
+                <div class="timeline-item-time">14:45</div>
+                <div class="timeline-item-text">Do something</div>
+              </div>
+              ...
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-date">22 <small>DEC</small></div>
+            <div class="timeline-item-content">Plain text goes here</div>
+          </div>
+          <!-- Timeline Item With Card -->
+          <div class="timeline-item">
+            <div class="timeline-item-date">23 <small>DEC</small></div>
+            <div class="timeline-item-content">
+              <div class="card">
+                ...
+              </div>
+              ...
+            </div>
+          </div>
+          <!-- Timeline Item With List Block -->
+          <div class="timeline-item">
+            <div class="timeline-item-date">24 <small>DEC</small></div>
+            <div class="timeline-item-content">
+              <div class="list inset">
+                <ul>
+                  ...
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-date">25 <small>DEC</small></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-time">11:11</div>
+              <div class="timeline-item-text">Task 1</div>
+              <div class="timeline-item-time">12:33</div>
+              <div class="timeline-item-text">Task 2</div>
+              ...
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-date">26 <small>DEC</small></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-inner">
+                <div class="timeline-item-time">11:11</div>
+                <div class="timeline-item-text">Task 1</div>
+              </div>
+              <div class="timeline-item-inner">
+                <div class="timeline-item-time">12:33</div>
+                <div class="timeline-item-text">Task 2</div>
+              </div>
+              ...
+            </div>
+          </div>
+        </div>
+        <!-- ============================================== -->
+      </div>
+      <div class="page-content tab" id="tab-2">
+        <div class="block">
+          <p><b>Tab 2 content</b></p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quos asperiores ut, odio numquam ab, qui,
+            alias adipisci in magni reiciendis reprehenderit. Labore esse quae ut tempore consequatur, reprehenderit
+            similique!</p>
+        </div>
+        <!-- ============================================== -->
+        <!-- Timeline -->
+        <div class="block-title">Vertical Timeline</div>
+        <div class="timeline">
+          <!-- Timeline item -->
+          <div class="timeline-item">
+            <div class="timeline-item-date">21 <small>DEC</small></div>
+            <div class="timeline-item-divider"></div>
+            <div class="timeline-item-content">Plain text item</div>
+          </div>
+          <!-- Timeline item with inner -->
+          <div class="timeline-item">
+            <div class="timeline-item-date">22 <small>DEC</small></div>
+            <div class="timeline-item-divider"></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-inner">Another text goes here</div>
+            </div>
+          </div>
+          <!-- Timeline item with special timeline elements -->
+          <div class="timeline-item">
+            <div class="timeline-item-date">23 <small>DEC</small></div>
+            <div class="timeline-item-divider"></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-time">12:33</div>
+              <div class="timeline-item-title">Item Title</div>
+              <div class="timeline-item-subtitle">Item Subtitle</div>
+              <div class="timeline-item-text">Item Text</div>
+            </div>
+          </div>
+          <!-- Timeline item with special timeline elements and inner -->
+          <div class="timeline-item">
+            <div class="timeline-item-date">24 <small>DEC</small></div>
+            <div class="timeline-item-divider"></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-inner">
+                <div class="timeline-item-time">12:33</div>
+                ...
+              </div>
+            </div>
+          </div>
+          <!-- Timeline item with multiple events per day  -->
+          <div class="timeline-item">
+            <div class="timeline-item-date">25 <small>DEC</small></div>
+            <div class="timeline-item-divider"></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-time">12:33</div>
+              <div class="timeline-item-title">Item Title</div>
+              <div class="timeline-item-subtitle">Item Subtitle</div>
+              <div class="timeline-item-text">Item Text</div>
+              <div class="timeline-item-time">15:45</div>
+              <div class="timeline-item-title">Item Title</div>
+              <div class="timeline-item-subtitle">Item Subtitle</div>
+              <div class="timeline-item-text">Item Text</div>
+            </div>
+          </div>
+          <!-- Timeline item with multiple events (inners) per day -->
+          <div class="timeline-item">
+            <div class="timeline-item-date">26 <small>DEC</small></div>
+            <div class="timeline-item-divider"></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-inner">
+                <div class="timeline-item-time">12:33</div>
+                ...
+              </div>
+              <div class="timeline-item-inner">
+                <div class="timeline-item-time">15:45</div>
+                ...
+              </div>
+            </div>
+          </div>
+          <!-- Timeline item with Card -->
+          <div class="timeline-item">
+            <div class="timeline-item-date">27 <small>DEC</small></div>
+            <div class="timeline-item-divider"></div>
+            <div class="timeline-item-content card">
+              <div class="card-header">Card header</div>
+              <div class="card-content card-content-padding">Card content</div>
+              <div class="card-footer">Card footer</div>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================== -->
+      </div>
+      <div class="page-content tab" id="tab-3">
+        <div class="block">
+          <p><b>Tab 3 content</b></p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quos asperiores ut, odio numquam ab, qui,
+            alias adipisci in magni reiciendis reprehenderit. Labore esse quae ut tempore consequatur, reprehenderit
+            similique!</p>
+        </div>
+        <!-- ============================================== -->
+        <!-- Each next item will on different side -->
+        <div class="block-title">Side By Side</div>
+        <div class="timeline timeline-sides">
+          <div class="timeline-item">
+            <div class="timeline-item-date">21 <small>DEC</small></div>
+            <div class="timeline-item-divider"></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-inner">Some text goes here</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-date">22 <small>DEC</small></div>
+            <div class="timeline-item-divider"></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-inner">Another text goes here</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-date">23 <small>DEC</small></div>
+            <div class="timeline-item-divider"></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-inner">Just plain text</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-item-date">24 <small>DEC</small></div>
+            <div class="timeline-item-divider"></div>
+            <div class="timeline-item-content">
+              <div class="timeline-item-inner">One more text here</div>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================== -->
+      </div>
+    </div>
+
+    <div class="page-content">
+      <div class="list links-list">
+
+      </div> <!-- End of <div class="list links-list"> -->
+    </div>
+
+  </div>
+</template>
+<script>
+  export default (props, {$, $on, $f7, $store }) => {
+    // Component Data  
+    let $toolbarEl;
+
+    // Component Methods
+    const togglePosition = () => {
+      $toolbarEl.toggleClass('toolbar-bottom toolbar-top');
+    }
+
+    const showAAA = () => {
+      console.log("---- AAAAA exec");
+    }
+
+    const showBBB = () => {
+      console.log("---- BBBBB exec");
+    }
+
+    const showCCC = () => {
+      console.log("---- CCCCC exec");
+    }
+    // Lifecycle
+
+    // Page Events
+    $on('pageInit', (e, page) => {
+      $toolbarEl = page.$el.find('.toolbar');
+    });
+
+    // -------------------------------------    App Events  -----------------------------------------
+    const products = $store.getters.products;
+
+    const addProduct = () => {
+      $store.dispatch('addProduct', {
+        id: '4',
+        title: 'Apple iPhone 12',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
+      });
+    }
+    //----------------------------------------------------
+    const loading = $store.getters.loading;
+    const users = $store.getters.users;
+
+    return $render;
+  }
+
+</script>

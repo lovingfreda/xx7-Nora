@@ -3,6 +3,7 @@ import HomePage from '../pages/home.f7.html';
 import AboutPage from '../pages/about.f7.html';
 import FormPage from '../pages/form.f7.html';
 import CatalogPage from '../pages/catalog.f7.html';
+import SchedulePage from '../pages/schedule.f7.html';
 import ProductPage from '../pages/product.f7.html';
 import SettingsPage from '../pages/settings.f7.html';
 
@@ -40,6 +41,10 @@ var routes = [
   {
     path: '/catalog/',
     component: CatalogPage,
+  },
+  {
+    path: '/schedule/',
+    component: SchedulePage,
   },
   {
     path: '/product/:id/',

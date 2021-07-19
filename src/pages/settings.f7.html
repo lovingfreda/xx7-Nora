@@ -277,6 +277,9 @@ export default (props, { $, $on, $f7, $store }) => {
         // -------------------------------------    App Events  -----------------------------------------
     });
 
+    $on('pageBeforeRemove', () => {
+        console.log('pageBeforeRemove');
+    });
     //----------------------------------------------------
     return $render;
 };
