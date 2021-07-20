@@ -249,7 +249,7 @@
       if (tabEL) {
         //console.log('Tab becomes visible/active : ' + tabEL.id);
         // if come into Tab <Settings>, we should do Login operator if necessary
-        if (tabEL.id == 'view-settings'){
+        if ((tabEL.id == 'view-settings') /*|| (tabEL.id == 'view-schedule')*/) {
              // -----------------------  Step.1 Login Necessary --------------------------------
               const flag = $store.getters.loading;
               if (!flag.value)  //  flag loading == false means NOT login yet

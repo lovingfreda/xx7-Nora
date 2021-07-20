@@ -5,6 +5,9 @@ const store = createStore({
   state: {
     loading: false,
     users: [],
+    events: [],
+    artidaily: [],
+
 
     synday: '2021/01/01',
     access: [],
@@ -34,6 +37,12 @@ const store = createStore({
     users({ state }) {
       return state.users;
     },
+    events({ state }) {
+      return state.events;
+    },
+    artidaily({ state }) {
+      return state.artidaily;
+    },
     synday({ state }) {
       return state.synday;
     },
@@ -49,7 +58,7 @@ const store = createStore({
       state.loading = true;
       setTimeout(() => {
 //      state.users = ['User 1', 'User 2', 'User 3', 'User 4', 'User 5'];
-        state.users = [{ "id" : "1", "login" : "guest", "first_name" : "Guest", "last_name" : "Member", "title" : "", "group" : "1", "mobile" : "", "address1" : "", "address2" : "", "address3" : "", "date_last_login" : "11/24/2000", "language_id" : "4", "image_url" : "", "age_id" : "3", "gender_id" : "1", "education_id" : "2", "user_is_active" : "1" }, { "id" : "2", "login" : "admin", "first_name" : "Admin", "last_name" : "User", "title" : "", "group" : "2", "mobile" : "", "address1" : "", "address2" : "", "address3" : "", "date_last_login" : "12/26/2000", "language_id" : "4", "image_url" : "", "age_id" : "4", "gender_id" : "1", "education_id" : "3", "user_is_active" : "1" }, { "id" : "3", "login" : "yangy", "first_name" : "Yang", "last_name" : "Yang", "title" : "", "group" : "2", "mobile" : "", "address1" : "中关村18号", "address2" : "金地格林13栋4-203", "address3" : "东城区五道口", "date_last_login" : "", "language_id" : "", "image_url" : "", "age_id" : "", "gender_id" : "", "education_id" : "", "user_is_active" : "1" }, { "id" : "4", "login" : "eva", "first_name" : "Eva", "last_name" : "Bai", "title" : "", "group" : "1", "mobile" : "", "address1" : "中关村18号", "address2" : "金地格林13栋4-203", "address3" : "东城区五道口", "date_last_login" : "", "language_id" : "", "image_url" : "", "age_id" : "", "gender_id" : "", "education_id" : "", "user_is_active" : "1" }];
+        state.users = [{ "id" : "1", "login" : "AAA", "first_name" : "GuestAAA", "last_name" : "Member", "title" : "", "group" : "1", "mobile" : "", "address1" : "", "address2" : "", "address3" : "", "date_last_login" : "11/24/2000", "language_id" : "4", "image_url" : "", "age_id" : "3", "gender_id" : "1", "education_id" : "2", "user_is_active" : "1" }, { "id" : "2", "login" : "BBB", "first_name" : "AdminBBB", "last_name" : "User", "title" : "", "group" : "2", "mobile" : "", "address1" : "", "address2" : "", "address3" : "", "date_last_login" : "12/26/2000", "language_id" : "4", "image_url" : "", "age_id" : "4", "gender_id" : "1", "education_id" : "3", "user_is_active" : "1" }, { "id" : "3", "login" : "CCC", "first_name" : "YangCCC", "last_name" : "Yang", "title" : "", "group" : "2", "mobile" : "", "address1" : "中关村18号", "address2" : "金地格林13栋4-203", "address3" : "东城区五道口", "date_last_login" : "", "language_id" : "", "image_url" : "", "age_id" : "", "gender_id" : "", "education_id" : "", "user_is_active" : "1" }, { "id" : "4", "login" : "DDD", "first_name" : "EvaDDD", "last_name" : "Bai", "title" : "", "group" : "1", "mobile" : "", "address1" : "中关村18号", "address2" : "金地格林13栋4-203", "address3" : "东城区五道口", "date_last_login" : "", "language_id" : "", "image_url" : "", "age_id" : "", "gender_id" : "", "education_id" : "", "user_is_active" : "1" }];
         state.loading = false;
       }, 3000);
     },
@@ -61,6 +70,28 @@ const store = createStore({
             .then((users) => {
               state.loading = false;
               state.users = users['users'];
+            })
+      }, 3000);
+    },
+    getEvents({ state }, { catgID }) {
+      state.loading = true;
+      setTimeout(() => {
+          fetch(`http://portal.kideduc.com/services/events.php?catgID=${catgID}`)
+            .then((res) => res.json())
+            .then((events) => {
+              state.loading = false;
+              state.events = events['events'];
+            })
+      }, 3000);
+    },
+    getArtiDaily({ state }, { userID }) {
+      state.loading = true;
+      setTimeout(() => {
+          fetch(`http://portal.kideduc.com/services/articles_daily.php?userID=${userID}`)
+            .then((res) => res.json())
+            .then((artidaily) => {
+              state.loading = false;
+              state.artidaily = artidaily['dailydetails'];
             })
       }, 3000);
     },
