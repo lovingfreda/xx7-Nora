@@ -188,19 +188,29 @@
       <p class="row">
         <button class="col button button-fill color-red" type="submit">Save Data</button>
       </p>
+      <p class="row"></p>
     </div>
     <!-- Buttons Submit Ending -->
     ` : $h`
-        <div class="block block-strong">请首先登录系统再修改个人资料</div>
+    <div class="block block-strong">
+      <p class="row">
+        <!-- <div class="block">请首先登录系统再修改个人资料</div>
+        <button class="col button button-fill color-red" onclick="submit">我要登录</button> -->
+        请首先登录系统再修改个人资料
+      </p>
+      <p class="row">
+        <a class="button button-fill color-red fill-form-login"  href="#">我要登录</a>
+      </p>
+    </div>
     `}
 </form>
 
     <!-- Buttons Fill Form Data Here style="height:0px" -->
-    <div class="block block-strong row">
+    <div class="block block-strong row" style="display:none;">
       <div class="col"><a class="button button-fill fill-form-from-data-a"  href="#">Fill Eva</a></div>
       <div class="col"><a class="button button-fill fill-form-from-data-c"  href="#">Fill Store</a></div>
       <div class="col"><a class="button button-fill fill-form-from-data-b"  href="#">Fill YangY</a></div>
-      <!-- <div class="col"><a class="button button-fill fill-form-from-data-k"  href="#">testing</a></div> -->
+      <div class="col"><a class="button button-fill fill-form-from-data-k"  href="#">testing</a></div>
     </div>
     <!-- END OF Fill Form Data Buttons  -->
 
@@ -269,10 +279,14 @@ export default (props, { $, $on, $f7, $store }) => {
           $f7.form.fillFromData('#my-form', formData);
         });
 
-        /*
+        $('.fill-form-login').on('click', function(){
+          
+          $f7.loginScreen.open('.login-screen', true);
+        });
+
         $('.fill-form-from-data-k').on('click', function(){
           console.log("Form Action URL:! " + $f7.$('form#my-form').attr('action'));
-        }); */
+        }); 
 
         // -------------------------------------    App Events  -----------------------------------------
     });
