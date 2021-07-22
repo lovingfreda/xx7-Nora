@@ -21,12 +21,12 @@
           <i class="icon material-icons md-only">email</i>
           <span class="tabbar-label">活动日程</span>
         </a>
-        <a href="#tab-2" class="tab-link">
+        <a href="#tab-2" class="tab-link" @click=${toggleMyArrange}>
           <i class="icon f7-icons if-not-md">today_fill</i>
           <i class="icon material-icons md-only">today</i>
           <span class="tabbar-label">我的安排</span>
         </a>
-        <a href="#tab-3" class="tab-link">
+        <a href="#tab-3" class="tab-link" @click=${toggleMySuggestion}>
           <i class="icon f7-icons if-not-md">cloud_upload_fill<span class="badge color-red">5</span></i>
           <i class="icon material-icons md-only">file_upload<span class="badge color-red">5</span></i>
           <span class="tabbar-label">推荐</span>
@@ -56,7 +56,7 @@
               ${events.value.map((line) => $h`
               <!-- Timeline Item (Day) -->
               <div class="timeline-item">
-                <div class="timeline-item-date">${line.date_title} <small>*</small></div>
+                <div class="timeline-item-date">${line.date_title} <small></small></div>
                 <div class="timeline-item-content">
                   <!-- <div class="timeline-item-inner">  !!! Example here.. !!!
                     <div class="timeline-item-time">12:56</div>
@@ -94,7 +94,7 @@
           <!-- ----------------------- Outer Loop : if true {do sometHing} FINISHED  FINISHED  FINISHED  FINISHED    ----------- -->
         ` : $h`
           <!-- ----------------------- Outer Loop : if falae {do another thing here}  ------------- -->
-          <div>NO RECORDS [LINE 96] FILE [schedule.f7]</div>
+          <div>NO RECORDS [LINE 97] FILE [schedule.f7]</div>
         `}
 
         <!-- ============================================== -->
@@ -109,97 +109,141 @@
             similique!</p>
         </div>
         <!-- ============================================== -->
-        <!-- Timeline -->
-        <div class="block-title">Vertical Timeline</div>
-        <div class="timeline">
-          <!-- Timeline item -->
-          <div class="timeline-item">
-            <div class="timeline-item-date">21 <small>DEC</small></div>
-            <div class="timeline-item-divider"></div>
-            <div class="timeline-item-content">Plain text item</div>
-          </div>
-          <!-- Timeline item with inner -->
-          <div class="timeline-item">
-            <div class="timeline-item-date">22 <small>DEC</small></div>
-            <div class="timeline-item-divider"></div>
-            <div class="timeline-item-content">
-              <div class="timeline-item-inner">Another text goes here</div>
-            </div>
-          </div>
-          <!-- Timeline item with special timeline elements -->
-          <div class="timeline-item">
-            <div class="timeline-item-date">23 <small>DEC</small></div>
-            <div class="timeline-item-divider"></div>
-            <div class="timeline-item-content">
-              <div class="timeline-item-time">12:33</div>
-              <div class="timeline-item-title">Item Title</div>
-              <div class="timeline-item-subtitle">Item Subtitle</div>
-              <div class="timeline-item-text">Item Text</div>
-            </div>
-          </div>
-          <!-- Timeline item with special timeline elements and inner -->
-          <div class="timeline-item">
-            <div class="timeline-item-date">24 <small>DEC</small></div>
-            <div class="timeline-item-divider"></div>
-            <div class="timeline-item-content">
-              <div class="timeline-item-inner">
-                <div class="timeline-item-time">12:33</div>
-                ...
+        <!--
+        Additional "timeline-horizontal" class to enable Horizontal timeline
+        Additional "col-50" to define column width (50%)
+        Additional "tablet-20" to define column width for tablets (20%)
+        -->
+        ${events.value.length > 0 ? $h`
+          <!-- ----------------------- Outer Loop : When N-Days Array events[..] is Not Null,  do the logic below  ------------- -->
+          <div class="block-title">timeline-horizontal</div>
+          <div class="timeline">
+              ${events.value.map((line) => $h`
+              <!-- Timeline item with special timeline elements and inner (Day) -->
+              <div class="timeline-item">
+                <div class="timeline-item-date">${line.date_title} <small></small></div>
+                <div class="timeline-item-divider"></div>
+                <div class="timeline-item-content">
+                  <!--                             !!! Example here.. !!!
+                    <div class="timeline-item-content">
+                      <div class="timeline-item-time">12:33</div>
+                      <div class="timeline-item-title">Item Title</div>
+                      <div class="timeline-item-subtitle">Item Subtitle</div>
+                      <div class="timeline-item-text">Item Text</div>
+                    </div> -->
+                  <!-- ----------------------- Inner Loop: each day have a different activity list  ------------- -->
+                  ${myarrange.value.length > 0 ? $h`
+
+                      ${myarrange.value.map((dailyLine) => (line.date_start === dailyLine.date_start ? $h`
+                          <!-- Some data show in Col-1, others show in Col-2..Col-3....Col-N -->
+                          <!-- We using AAA === BBB ? H : N,  and first we should mapping to daily--lines  -->
+                          <div class="timeline-item-inner">
+                            <div class="timeline-item-time">${dailyLine.time_st} - ${dailyLine.time_ed}</div>
+                            <div class="timeline-item-title"><small>${dailyLine.title}</small></div>
+                            <div class="timeline-item-subtitle"></div>
+                            <div class="timeline-item-text">${dailyLine.desc}</div>
+                          </div>
+                          ` : '')
+                      )}
+
+                  ` : $h`
+                      <!-- <div class="timeline-item-inner">
+                        <div class="timeline-item-time">12:56</div>
+                        <div class="timeline-item-text">No Action goes here</div>
+                      </div>
+                      ... -->
+                  `}
+                  <!-- ----------------------- Inner Loop: FINISHED   FINISHED   FINISHED   FINISHED  ------------- -->
+                </div>
               </div>
-            </div>
+              `)}
           </div>
-          <!-- Timeline item with multiple events per day  -->
-          <div class="timeline-item">
-            <div class="timeline-item-date">25 <small>DEC</small></div>
-            <div class="timeline-item-divider"></div>
-            <div class="timeline-item-content">
-              <div class="timeline-item-time">12:33</div>
-              <div class="timeline-item-title">Item Title</div>
-              <div class="timeline-item-subtitle">Item Subtitle</div>
-              <div class="timeline-item-text">Item Text</div>
-              <div class="timeline-item-time">15:45</div>
-              <div class="timeline-item-title">Item Title</div>
-              <div class="timeline-item-subtitle">Item Subtitle</div>
-              <div class="timeline-item-text">Item Text</div>
-            </div>
-          </div>
-          <!-- Timeline item with multiple events (inners) per day -->
-          <div class="timeline-item">
-            <div class="timeline-item-date">26 <small>DEC</small></div>
-            <div class="timeline-item-divider"></div>
-            <div class="timeline-item-content">
-              <div class="timeline-item-inner">
-                <div class="timeline-item-time">12:33</div>
-                ...
-              </div>
-              <div class="timeline-item-inner">
-                <div class="timeline-item-time">15:45</div>
-                ...
-              </div>
-            </div>
-          </div>
-          <!-- Timeline item with Card -->
-          <div class="timeline-item">
-            <div class="timeline-item-date">27 <small>DEC</small></div>
-            <div class="timeline-item-divider"></div>
-            <div class="timeline-item-content card">
-              <div class="card-header">Card header</div>
-              <div class="card-content card-content-padding">Card content</div>
-              <div class="card-footer">Card footer</div>
-            </div>
-          </div>
-        </div>
+          <!-- ----------------------- Outer Loop : if true {do sometHing} FINISHED  FINISHED  FINISHED  FINISHED    ----------- -->
+        ` : $h`
+          <!-- ----------------------- Outer Loop : if falae {do another thing here}  ------------- -->
+          <div>NO RECORDS [LINE 164] FILE [schedule.f7]</div>
+        `}
+
+        <!-- ============================================== -->
+        <!-- Tab 2 Ending -->
         <!-- ============================================== -->
       </div>
       <div class="page-content tab" id="tab-3">
+<form action="http://portal.kideduc.com/api/EditUser.php?user_id=${users.value.length > 0 ? users.value[0].id : -1}&ccsForm=users%3AEdit" method="POST" class="list form-ajax-submit" id="kitty-form">
         <div class="block">
           <p><b>Tab 3 content</b></p>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quos asperiores ut, odio numquam ab, qui,
             alias adipisci in magni reiciendis reprehenderit. Labore esse quae ut tempore consequatur, reprehenderit
             similique!</p>
+          <p class="row">
+            <div class="col"><button class="col button button-fill" type="submit">标记已读</button></div>
+            <div class="col"></div>
+            <div class="col"><a class="button button-fill fill-form-from-data"  href="#">debug..</a></div>
+            <div class="col"></div>
+          </p>
         </div>
+</form>
+        <!-- ============================================== -->
+        <!--
+        Additional "timeline-horizontal" class to enable Horizontal timeline
+        Additional "col-50" to define column width (50%)
+        Additional "tablet-20" to define column width for tablets (20%)
+        -->
+        ${events.value.length > 0 ? $h`
+          <!-- ----------------------- Outer Loop : When N-Days Array events[..] is Not Null,  do the logic below  ------------- -->
+          <div class="block-title">timeline-horizontal</div>
+          <div class="timeline timeline-sides">
+              ${events.value.map((line) => $h`
+              <!-- Timeline Item (Day) -->
+              <div class="timeline-item">
+                <div class="timeline-item-date">${line.date_title} <small></small></div>
+                <div class="timeline-item-divider"></div>
+                <div class="timeline-item-content">
+                     <!-- <div class="timeline-item">
+                            <div class="timeline-item-date">21 <small>DEC</small></div>
+                            <div class="timeline-item-divider"></div>
+                            <div class="timeline-item-content">
+                              <div class="timeline-item-inner">Some text goes here</div>
+                            </div>
+                          </div> -->
+                  <!-- ----------------------- Inner Loop: each day have a different activity list  ------------- -->
+                  ${mysuggest.value.length > 0 ? $h`
+
+                      ${mysuggest.value.map((dailyLine) => (line.date_start === dailyLine.date_start ? $h`
+                          <!-- Some data show in Col-1, others show in Col-2..Col-3....Col-N -->
+                          <!-- We using AAA === BBB ? H : N,  and first we should mapping to daily--lines  -->
+                          <div class="timeline-item-inner">
+                            <div class="timeline-item-time">${dailyLine.time_st} - ${dailyLine.time_ed}</div>
+                            <div class="timeline-item-title"><small>${dailyLine.title}</small></div>
+                            <div class="timeline-item-subtitle"></div>
+                            <div class="timeline-item-text">${dailyLine.desc}</div>
+                          </div>
+                          ` : '')
+                      )}
+
+                  ` : $h`
+                      <!-- <div class="timeline-item-inner">
+                        <div class="timeline-item-time">12:56</div>
+                        <div class="timeline-item-text">No Action goes here</div>
+                      </div>
+                      ... -->
+                  `}
+                  <!-- ----------------------- Inner Loop: FINISHED   FINISHED   FINISHED   FINISHED  ------------- -->
+                </div>
+              </div>
+              `)}
+          </div>
+          <!-- ----------------------- Outer Loop : if true {do sometHing} FINISHED  FINISHED  FINISHED  FINISHED    ----------- -->
+        ` : $h`
+          <!-- ----------------------- Outer Loop : if falae {do another thing here}  ------------- -->
+          <div>NO RECORDS [LINE 231] FILE [schedule.f7]</div>
+        `}
+
+        <!-- ============================================== -->
+        <!-- Tab 3 Ending -->
         <!-- ============================================== -->
         <!-- Each next item will on different side -->
+        <!-- 
         <div class="block-title">Side By Side</div>
         <div class="timeline timeline-sides">
           <div class="timeline-item">
@@ -230,7 +274,7 @@
               <div class="timeline-item-inner">One more text here</div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- ============================================== -->
       </div>
     </div>
@@ -245,7 +289,11 @@
 </template>
 <script>
   export default (props, {$, $on, $f7, $store }) => {
-    // Component Data  
+    //----------------------------------------------------
+    const loading = $store.getters.loading;
+    const users   = $store.getters.users;
+    //----------------------------------------------------
+    // Component Data
     let $toolbarEl;
 
     // Component Methods
@@ -253,16 +301,24 @@
       $toolbarEl.toggleClass('toolbar-bottom toolbar-top');
     }
 
-    const showAAA = () => {
-      console.log("---- AAAAA exec");
+    const toggleMyArrange = () => {     // Tab 2  <My Arrange>    trigger
+      console.log("---- toggleMyArrange exec");
+      //----------------------------------------------------
+      const loading = $store.getters.loading;
+      const users   = $store.getters.users;
+      //----------------------------------------------------
+      $store.dispatch('getMyArrange',   { userID:'eva'} );   // Ajax Get Data...// bug here
+
     }
 
-    const showBBB = () => {
-      console.log("---- BBBBB exec");
-    }
+    const toggleMySuggestion = () => {  // Tab 3  <My Suggestion> trigger
+      console.log("---- toggleMySuggestion exec");
+      //----------------------------------------------------
+      //const loading = $store.getters.loading;
+      //const users   = $store.getters.users;
+      //----------------------------------------------------
+      $store.dispatch('getMySuggest',   { userID:'yangy'} );   // Ajax Get Data...// bug here
 
-    const showCCC = () => {
-      console.log("---- CCCCC exec");
     }
     // Lifecycle
 
@@ -272,11 +328,19 @@
 
       $store.dispatch('getEvents',   { catgID:'1'} );   // Outer Loop : Each Daily
       $store.dispatch('getArtiDaily',{ userID:'-1'});   // Inner Loop : Each Line of that Day
+
+      $('.fill-form-from-data').on('click', function(){
+          console.log("Form Action URL:! " + $f7.$('form#kitty-form').attr('action'));
+      });
+
     });
 
     // -------------------------------------    App Events  -----------------------------------------
     const events    = $store.getters.events;
-    const artidaily = $store.getters.artidaily;
+    const artidaily = $store.getters.artidaily; // Tab-1 : Whole Activity
+
+    const myarrange = $store.getters.myarrange; // Tab-2 : My Arranges
+    const mysuggest = $store.getters.mysuggest; // Tab-3 : My Suggestions
     //----------------------------------------------------
 
     return $render;

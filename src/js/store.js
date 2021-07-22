@@ -7,6 +7,8 @@ const store = createStore({
     users: [],
     events: [],
     artidaily: [],
+    myarrange: [],
+    mysuggest: [],
 
 
     synday: '2021/01/01',
@@ -43,6 +45,13 @@ const store = createStore({
     artidaily({ state }) {
       return state.artidaily;
     },
+    myarrange({ state }) {
+      return state.myarrange;
+    },
+    mysuggest({ state }) {
+      return state.mysuggest;
+    },
+
     synday({ state }) {
       return state.synday;
     },
@@ -95,6 +104,29 @@ const store = createStore({
             })
       }, 3000);
     },
+    getMyArrange({ state }, { userID }) {
+      state.loading = true;
+      setTimeout(() => {
+          fetch(`http://portal.kideduc.com/services/articles_arrg.php?userID=${userID}`)
+            .then((res) => res.json())
+            .then((myarrange) => {
+              state.loading = false;
+              state.myarrange = myarrange['arranges'];
+            })
+      }, 3000);
+    },
+    getMySuggest({ state }, { userID }) {
+      state.loading = true;
+      setTimeout(() => {
+          fetch(`http://portal.kideduc.com/services/articles_sugg.php?userID=${userID}`)
+            .then((res) => res.json())
+            .then((mysuggest) => {
+              state.loading = false;
+              state.mysuggest = mysuggest['suggestions'];
+            })
+      }, 3000);
+    },
+
     addAccess({ state }, access) {
       state.access = [...state.access, access];
     },
