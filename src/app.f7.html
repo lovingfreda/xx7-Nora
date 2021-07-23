@@ -104,7 +104,7 @@
             <span class="tabbar-label">日程</span>
           </a>
           <a href="#view-settings" class="tab-link">
-            <i class="icon f7-icons if-not-md">gear</i>
+            <i class="icon f7-icons if-not-md">gear_alt_fill</i>
             <i class="icon material-icons if-md">settings</i>
             <span class="tabbar-label">设置</span>
           </a>
@@ -140,16 +140,418 @@
           <div class="navbar">
             <div class="navbar-bg"></div>
             <div class="navbar-inner">
-              <div class="title">Popup</div>
+              <div class="title">问卷调查</div>
               <div class="right">
                 <a href="#" class="link popup-close">Close</a>
               </div>
             </div>
           </div>
           <div class="page-content">
-            <div class="block">
+
+            <!-- <div class="block">
               <p>Popup content goes here.</p>
+            </div> -->
+            <!-- questionnaire form here -->
+<form action="http://portal.kideduc.com/api/EditQuestionnaire.php?user_id=${users.value.length > 0 ? users.value[0].id : -1}&ccsForm=questionnaire" method="POST" class="list form-ajax-submit" id="helen-form">
+            <div class="block-title">1 您对本次航程的服务是否满意？</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_1" value="1" checked="checked"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">非常满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_1" value="2"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_1" value="3"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">一般</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_1" value="4"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">不满意</div>
+                    </div>
+                  </label>
+                </li>
+              </ul>
             </div>
+            <div class="block-title">2 您对游轮上的基础服务设施是否满意?</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_2" value="1" checked="checked"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">非常满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_2" value="2"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_2" value="3"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">一般</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_2" value="4"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">不满意</div>
+                    </div>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="block-title">3 您对游轮上工作人员的服务态度是否满意?</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_3" value="1" checked="checked"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">非常满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_3" value="2"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_3" value="3"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">一般</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_3" value="4"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">不满意</div>
+                    </div>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="block-title">4 您对船上的餐饮服务质量是否满意?</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_4" value="1" checked="checked"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">非常满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_4" value="2"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_4" value="3"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">一般</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_4" value="4"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">不满意</div>
+                    </div>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="block-title">5 您对游轮上的娱乐活动及设施是否满意？</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_5" value="1" checked="checked"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">非常满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_5" value="2"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_5" value="3"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">一般</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_5" value="4"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">不满意</div>
+                    </div>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="block-title">6 您对客舱基本生活设施及条件是否满意?</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_6" value="1" checked="checked"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">非常满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_6" value="2"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_6" value="3"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">一般</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_6" value="4"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">不满意</div>
+                    </div>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="block-title">7 您对游轮上的音乐与艺术活动质量及场次安排是否满意?</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_7" value="1" checked="checked"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">非常满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_7" value="2"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_7" value="3"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">一般</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_7" value="4"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">不满意</div>
+                    </div>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="block-title">8 您的本次航程的日程活动安排是否满意?</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_8" value="1" checked="checked"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">非常满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_8" value="2"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_8" value="3"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">一般</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_8" value="4"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">不满意</div>
+                    </div>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="block-title">9 您是否愿意下次仍然携带家人参与我们的海上航行?</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_9" value="1" checked="checked"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">非常满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_9" value="2"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">满意</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_9" value="3"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">一般</div>
+                    </div>
+                  </label>
+                </li>
+                <li>
+                  <label class="item-radio item-content">
+                    <input type="radio" name="item_9" value="4"/>
+                    <i class="icon icon-radio"></i>
+                    <div class="item-inner">
+                      <div class="item-title">不满意</div>
+                    </div>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="block-title">10 您认为我们需要改进和完善的服务有：</div>
+            <div class="list no-hairlines-md">
+              <ul>
+                <li class="align-top">
+                  <div class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label"></div>
+                      <div class="item-input-wrap">
+                        <textarea placeholder="Bio" name="item_10" class="resizable"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+        <div class="block block-strong">
+          <p class="row">
+            <button class="col button button-fill color-red" type="submit">Save Data</button>
+          </p>
+          <p class="row"></p>
+        </div>
+</form>
+            <!-- Buttons Fill Form Data Here style="display:none;" -->
+            <div class="block block-strong row">
+              <div class="col"><a class="button button-fill fill-form-from-data-s"  href="#">testing</a></div>
+            </div>
+            <!-- END OF Fill Form Data Buttons  -->
+            <!-- questionnaire form here -->
+
           </div>
         </div>
       </div>
@@ -200,8 +602,11 @@
   </div>
 </template>
 <script>
-  export default (props, { $f7, $update, $store }) => {
-
+  export default (props, { $, $on, $f7, $update, $store }) => {
+    //----------------------------------------------------
+    const loading = $store.getters.loading;
+    const users   = $store.getters.users;
+    //----------------------------------------------------
     // Login screen demo data
     let username = '';
     let password = '';
@@ -252,7 +657,7 @@
         if ((tabEL.id == 'view-settings') /*|| (tabEL.id == 'view-schedule')*/) {
              // -----------------------  Step.1 Login Necessary --------------------------------
               const flag = $store.getters.loading;
-              if (!flag.value)  //  flag loading == false means NOT login yet
+              if (!flag.value)  //  flag loading == false means NOT login yet   BUG ! BUG ! BUG ! BUG ! BUG ! BUG !
               {
                 // ---   Open Login Screen Automatic ----
                 $f7.loginScreen.open('.login-screen', true);
@@ -278,6 +683,13 @@
       // do something on popup close
       console.log('pop up closing..... : ' + popup.el.id);
     }); */
+
+    // Page Events
+    $on('pageInit', () => {
+        $('.fill-form-from-data-s').on('click', function(){
+          console.log("Form Action URL:! " + $f7.$('form#helen-form').attr('action'));
+        });
+    });
 
     // ==================================================================================
     // Important !!! Important !!! Important !!! Important !!! Important !!! Important !!! 2021.07.05 15:49 Tony: Coding many many times!

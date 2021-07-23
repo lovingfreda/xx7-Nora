@@ -17,8 +17,8 @@
     <div class="toolbar tabbar-labels toolbar-top">
       <div class="toolbar-inner">
         <a href="#tab-1" class="tab-link tab-link-active">
-          <i class="icon f7-icons if-not-md">envelope_fill</i>
-          <i class="icon material-icons md-only">email</i>
+          <i class="icon f7-icons if-not-md">today</i><!-- envelope_fill -->
+          <i class="icon material-icons md-only">today</i><!-- email -->
           <span class="tabbar-label">活动日程</span>
         </a>
         <a href="#tab-2" class="tab-link" @click=${toggleMyArrange}>
@@ -169,16 +169,16 @@
         <!-- ============================================== -->
       </div>
       <div class="page-content tab" id="tab-3">
-<form action="http://portal.kideduc.com/api/EditUser.php?user_id=${users.value.length > 0 ? users.value[0].id : -1}&ccsForm=users%3AEdit" method="POST" class="list form-ajax-submit" id="kitty-form">
+<form action="http://portal.kideduc.com/api/EditSuggestion.php?user_id=${users.value.length > 0 ? users.value[0].id : -1}&ccsForm=suggestion%3AEdit" method="POST" class="list form-ajax-submit" id="kitty-form">
         <div class="block">
           <p><b>Tab 3 content</b></p>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quos asperiores ut, odio numquam ab, qui,
             alias adipisci in magni reiciendis reprehenderit. Labore esse quae ut tempore consequatur, reprehenderit
             similique!</p>
           <p class="row">
-            <div class="col"><button class="col button button-fill" type="submit">标记已读</button></div>
+            <div class="col"><button class="col button button-fill fill-form-from-data" type="submit">标记已读</button></div>
             <div class="col"></div>
-            <div class="col"><a class="button button-fill fill-form-from-data"  href="#">debug..</a></div>
+            <div class="col"><!-- <a class="button button-fill fill-form-from-data"  href="#">debug..</a> --></div>
             <div class="col"></div>
           </p>
         </div>
@@ -292,6 +292,7 @@
     //----------------------------------------------------
     const loading = $store.getters.loading;
     const users   = $store.getters.users;
+
     //----------------------------------------------------
     // Component Data
     let $toolbarEl;
@@ -304,10 +305,11 @@
     const toggleMyArrange = () => {     // Tab 2  <My Arrange>    trigger
       console.log("---- toggleMyArrange exec");
       //----------------------------------------------------
-      const loading = $store.getters.loading;
-      const users   = $store.getters.users;
+      //const loading = $store.getters.loading;
+      //const users   = $store.getters.users;
+      var currUserID = 
       //----------------------------------------------------
-      $store.dispatch('getMyArrange',   { userID:'eva'} );   // Ajax Get Data...// bug here
+      $store.dispatch('getMyArrange',   { userID: (users.value.length > 0 ? users.value[0].login : -1)} );   // Ajax Get Data...// bug here
 
     }
 
@@ -317,7 +319,7 @@
       //const loading = $store.getters.loading;
       //const users   = $store.getters.users;
       //----------------------------------------------------
-      $store.dispatch('getMySuggest',   { userID:'yangy'} );   // Ajax Get Data...// bug here
+      $store.dispatch('getMySuggest',   { userID: (users.value.length > 0 ? users.value[0].login : -1)} );   // Ajax Get Data...// bug here
 
     }
     // Lifecycle
@@ -329,8 +331,12 @@
       $store.dispatch('getEvents',   { catgID:'1'} );   // Outer Loop : Each Daily
       $store.dispatch('getArtiDaily',{ userID:'-1'});   // Inner Loop : Each Line of that Day
 
-      $('.fill-form-from-data').on('click', function(){
-          console.log("Form Action URL:! " + $f7.$('form#kitty-form').attr('action'));
+      $('.fill-form-from-data').on('click', function(){ //  do this when Button SAVE | DEBUG Click
+          // show form:action
+          //console.log("Form Action URL:! " + $f7.$('form#kitty-form').attr('action'));
+          // remove Red Badge
+          $f7.$('span.badge').removeClass('color-red');
+        //$f7.$('span.badge').removeClass('badge');
       });
 
     });
