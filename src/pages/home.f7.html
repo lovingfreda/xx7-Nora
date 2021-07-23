@@ -130,10 +130,10 @@
       <div class="block block-strong">
         <div class="row">
           <div class="col-50">
-            <a href="#" class="button button-raised button-fill popup-open" data-popup="#my-popup">满意调查</a>
+            <a href="#" class="button button-raised button-fill popup-open" data-popup="#my-popup">问卷调查</a>
           </div>
           <div class="col-50">
-            <a href="#" class="button button-raised button-fill login-screen-open" data-login-screen="#my-login-screen">我的账户</a>
+            <a href="#" class="button button-raised button-fill login-screen-open" data-login-screen="#my-login-screen">用户登陆</a>
           </div>
         </div>
       </div>
@@ -173,6 +173,8 @@ export default (props, {$f7, $on, $store}) => {
   //----------------------------------------------------
   $on('pageInit', () => {
       console.log("home.f7  pageInit! ");
+      // ---   Open Login Screen Automatic ----
+      $f7.loginScreen.open('.login-screen', true);
   })
   //----------------------------------------------------
   return $render;

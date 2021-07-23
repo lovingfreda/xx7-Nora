@@ -592,7 +592,7 @@
 
                 </li>
               </ul>
-              <div class="block-footer">Some text about login information.<br/>Click "Sign In" to Login, and click here to <a href="#" class="login-screen-close">Close Login Screen</a></div>
+              <div class="block-footer">Some text about login information.<br/>Click "Sign In" to Login, <!-- and click here to <a href="#" class="login-screen-close">Close Login Screen</a> --></div>
             </div>
           </div>
         </div>
@@ -656,8 +656,8 @@
         // if come into Tab <Settings>, we should do Login operator if necessary
         if ((tabEL.id == 'view-settings') /*|| (tabEL.id == 'view-schedule')*/) {
              // -----------------------  Step.1 Login Necessary --------------------------------
-              const flag = $store.getters.loading;
-              if (!flag.value)  //  flag loading == false means NOT login yet   BUG ! BUG ! BUG ! BUG ! BUG ! BUG !
+              const flag = $store.getters.users.value.length;
+              if (!(flag > 0))  //  !flag > 0 means NOT login yet
               {
                 // ---   Open Login Screen Automatic ----
                 $f7.loginScreen.open('.login-screen', true);

@@ -303,24 +303,27 @@
     }
 
     const toggleMyArrange = () => {     // Tab 2  <My Arrange>    trigger
-      console.log("---- toggleMyArrange exec");
+      //console.log("---- toggleMyArrange exec");
       //----------------------------------------------------
-      //const loading = $store.getters.loading;
-      //const users   = $store.getters.users;
-      var currUserID = 
+      if (myarrange.value.length > 0){
+          ;
+      }else {
+          $f7.preloader.show();
+          $store.dispatch('getMyArrange',   { userID: (users.value.length > 0 ? users.value[0].login : -1), f7:$f7} ); // Ajax Get Data...
+      }
       //----------------------------------------------------
-      $store.dispatch('getMyArrange',   { userID: (users.value.length > 0 ? users.value[0].login : -1)} );   // Ajax Get Data...// bug here
-
     }
 
     const toggleMySuggestion = () => {  // Tab 3  <My Suggestion> trigger
-      console.log("---- toggleMySuggestion exec");
+      //console.log("---- toggleMySuggestion exec");
       //----------------------------------------------------
-      //const loading = $store.getters.loading;
-      //const users   = $store.getters.users;
+      if (mysuggest.value.length > 0){
+          ;
+      }else {
+          $f7.preloader.show();
+          $store.dispatch('getMySuggest',   { userID: (users.value.length > 0 ? users.value[0].login : -1), f7:$f7} );   // Ajax Get Data...
+      }
       //----------------------------------------------------
-      $store.dispatch('getMySuggest',   { userID: (users.value.length > 0 ? users.value[0].login : -1)} );   // Ajax Get Data...// bug here
-
     }
     // Lifecycle
 

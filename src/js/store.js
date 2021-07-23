@@ -104,24 +104,26 @@ const store = createStore({
             })
       }, 3000);
     },
-    getMyArrange({ state }, { userID }) {
+    getMyArrange({ state }, { userID, f7 }) {
       state.loading = true;
       setTimeout(() => {
           fetch(`http://portal.kideduc.com/services/articles_arrg.php?userID=${userID}`)
             .then((res) => res.json())
             .then((myarrange) => {
               state.loading = false;
+              f7.preloader.hide();  // hidden refresh icon...tony add
               state.myarrange = myarrange['arranges'];
             })
       }, 3000);
     },
-    getMySuggest({ state }, { userID }) {
+    getMySuggest({ state }, { userID, f7 }) {
       state.loading = true;
       setTimeout(() => {
           fetch(`http://portal.kideduc.com/services/articles_sugg.php?userID=${userID}`)
             .then((res) => res.json())
             .then((mysuggest) => {
               state.loading = false;
+              f7.preloader.hide();  // hidden refresh icon...tony add
               state.mysuggest = mysuggest['suggestions'];
             })
       }, 3000);
