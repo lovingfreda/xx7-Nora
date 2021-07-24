@@ -660,6 +660,7 @@
               if (!(flag > 0))  //  !flag > 0 means NOT login yet
               {
                 // ---   Open Login Screen Automatic ----
+                console.log('login-screen.....line 664 ! ');
                 $f7.loginScreen.open('.login-screen', true);
               }
              // --------------------------------------------------------------------------------
@@ -698,8 +699,8 @@
       // do something on popup close
       console.log('login screen closed..... id=|' + loginScreen.el.id +'|');
 
-      const flag = $store.getters.loading;
-      if (flag.value)
+      const flag = $store.getters.users.value.length;
+      if (flag > 0)
       {   // Dymatic Automatic Click Button <Load Store> in Tab-Settings
           //------------------------------------------------------------
           loginScreen.app.$('.fill-form-from-data-c').click();      //  BUTTON Click ******
@@ -758,7 +759,7 @@
           $f7.dialog.alert('恭喜您登录成功 !', () => {
             // Saving data into Store-Storage  -------------------------
             $store.state.users = users;
-            $store.state.loading = true;
+
             // Close Login Screen  -------------------------------------
             $f7.loginScreen.close();
             // ---------------------------------------------------------

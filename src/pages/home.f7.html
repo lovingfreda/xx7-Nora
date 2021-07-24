@@ -173,8 +173,13 @@ export default (props, {$f7, $on, $store}) => {
   //----------------------------------------------------
   $on('pageInit', () => {
       console.log("home.f7  pageInit! ");
-      // ---   Open Login Screen Automatic ----
-      $f7.loginScreen.open('.login-screen', true);
+
+      const flag = $store.getters.users.value.length;
+      if (!flag > 0)
+      {   // ---   Open Login Screen Automatic ----
+          $f7.loginScreen.open('.login-screen', true);
+      }
+
   })
   //----------------------------------------------------
   return $render;
