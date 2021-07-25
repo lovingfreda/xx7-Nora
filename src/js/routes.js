@@ -124,7 +124,7 @@ var routes = [
         var vCatg = {
           firstName: 'Dear',
           lastName: 'My Passengers',
-          about: ' 我们为您提供以下服务，希望您喜欢!',
+          about: '我们为您提供以下特色服务，希望您喜欢!',
           links: [
             {
               title: 'Fall in lover with YangY Website',

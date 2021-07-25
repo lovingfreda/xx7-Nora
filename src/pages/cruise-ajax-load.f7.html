@@ -20,7 +20,7 @@
       <div class="list links-list">
         <ul>
           ${products.map((link) => $h`
-            <li><a class="popup-open" target="_self" href="/request-and-load/links/${link.id}/">${link.name}</a></li>
+            <li><a class="popup-open" target="_self" href="/request-and-load/links/${link.id}/">${link.name} (${link.with_links})</a></li>
        <!-- <li><a href="#${link.id}" class="popup-open" data-popup="#my-popup-${link.id}">${link.name}</a></li -->
           `)}
         </ul>
