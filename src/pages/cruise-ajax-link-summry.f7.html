@@ -50,7 +50,7 @@
                         <p>${line.title}</p>
                     </span>
                     <span class="col">
-                        <img src="${line.url}" width="190" height="110" border="0" alt="" />
+                        <img src="${line.url}" width="165" height="110" border="0" alt="picture ${line.url} missine" />
                     </span>
                   </p>
               </div>
@@ -92,11 +92,11 @@
                       </li>
                       <li>
                           <p class="row">
-                            <p class="col-30">
-                                <a @click="${showPhotoBrowser}" href="#">
+                            <p class="col-60">
+                                <a @click="${showPhotoBrowser}" href="#" id="Biz_Link_7">
                                   <i class="icon f7-icons if-not-md">search_circle_fill</i>
                                   <i class="icon material-icons if-md">search_circle</i>
-                                  <span id="Biz_Link_7" class="tabbar-label">查看甲板位置</span>
+                                  <span id="Biz_Span_7" class="tabbar-label">查看甲板位置</span>
                                 </a>
                             </p>
                           </p>
@@ -164,9 +164,9 @@ console.log("DEBUG..DESC=|" + pdtlinks[0]["desc"] + "|");  // Debug..
     //Open photo browser on click
     const showPhotoBrowser = (e) => {
       /*=== Default standalone ===*/
-      var str = new String(e.target.id);    // Biz_Link_4|Biz_Link_5|Biz_Link_6.....
+      var str = new String(e.target.id);    // Biz_Link_4|Biz_Link_5|Biz_Link_6.....Biz_Span_4|Biz_Span_5|Biz_Span_6.....
 console.log("e.target.id = " + str);    // Debug..
-      var reg = str.substring(0,9);         // Biz_Link_
+      var reg = str.substring(0,9);         // Biz_Link_  or Biz_Span_    So from char at pos[9]
       var x = str.replace(reg,"");          // 4|5|6.....
       var idx = (x)-1;      // activeIndex start at 0
 console.log("idx = " + idx);             // Debug..
