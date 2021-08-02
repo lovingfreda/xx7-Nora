@@ -10,7 +10,7 @@
     <div class="block-title">个人资料</div>
 
 <!-- Form 的URL Get参数集合里需要传入user_id=[Edit:ID]，从而保证CCS框架的代码可以正常做Update -->
-<form action="http://portal.kideduc.com/api/EditUser.php?user_id=${users.value.length > 0 ? users.value[0].id : -1}&ccsForm=users%3AEdit" method="POST" class="list form-ajax-submit" id="my-form">
+<form action="https://www.kideduc.com/portal/api/EditUser.php?user_id=${users.value.length > 0 ? users.value[0].id : -1}&ccsForm=users%3AEdit" method="POST" class="list form-ajax-submit" id="my-form">
 <!-- Laravel 的请求处理系统要求所有非 GET 和 POST 的请求全部通过 POST 请求来执行，再将真正的方法使用 _method 表单字段携带给后端。 -->
 
     ${users.value.length > 0 ? $h`

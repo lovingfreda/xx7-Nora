@@ -137,8 +137,8 @@ var routes = [
           ]
         };
         // Tony Adding Main Logic of AJAX :  1. Larabel 2. CCS Studio
-//      app.request.get('http://localhost:8083/products', function(data) {
-        app.request.get('http://portal.kideduc.com/services/link_categories.php?node='+cateId, function(data) {
+//      app.request.get('https://localhost:8083/products', function(data) {
+        app.request.get('https://www.kideduc.com/portal/services/link_categories.php?node='+cateId, function(data) {
               // Hide Preloader
               app.preloader.hide();
 
@@ -206,8 +206,8 @@ var routes = [
           ]
         };
         // Tony Adding Main Logic of AJAX :  1. Larabel 2. CCS Studio
-//      app.request.get('http://localhost:8083/products', function(data) {
-        app.request.get('http://portal.kideduc.com/services/links.php?node='+cateId, function(data) {
+//      app.request.get('https://localhost:8083/products', function(data) {
+        app.request.get('https://www.kideduc.com/portal/services/links.php?node='+cateId, function(data) {
               // Hide Preloader
               app.preloader.hide();
 

@@ -74,7 +74,7 @@ const store = createStore({
     getUsersBy({ state }, { login , password }) {
       state.loading = true;
       setTimeout(() => {
-          fetch(`http://portal.kideduc.com/services/auth.php?login=${login}&password=${password}`)
+          fetch(`https://www.kideduc.com/portal/services/auth.php?login=${login}&password=${password}`)
             .then((res) => res.json())
             .then((users) => {
               state.loading = false;
@@ -85,7 +85,7 @@ const store = createStore({
     getEvents({ state }, { catgID }) {
       state.loading = true;
       setTimeout(() => {
-          fetch(`http://portal.kideduc.com/services/events.php?catgID=${catgID}`)
+          fetch(`https://www.kideduc.com/portal/services/events.php?catgID=${catgID}`)
             .then((res) => res.json())
             .then((events) => {
               state.loading = false;
@@ -96,7 +96,7 @@ const store = createStore({
     getArtiDaily({ state }, { userID }) {
       state.loading = true;
       setTimeout(() => {
-          fetch(`http://portal.kideduc.com/services/articles_daily.php?userID=${userID}`)
+          fetch(`https://www.kideduc.com/portal/services/articles_daily.php?userID=${userID}`)
             .then((res) => res.json())
             .then((artidaily) => {
               state.loading = false;
@@ -107,7 +107,7 @@ const store = createStore({
     getMyArrange({ state }, { userID, f7 }) {
       state.loading = true;
       setTimeout(() => {
-          fetch(`http://portal.kideduc.com/services/articles_arrg.php?userID=${userID}`)
+          fetch(`https://www.kideduc.com/portal/services/articles_arrg.php?userID=${userID}`)
             .then((res) => res.json())
             .then((myarrange) => {
               state.loading = false;
@@ -119,7 +119,7 @@ const store = createStore({
     getMySuggest({ state }, { userID, f7 }) {
       state.loading = true;
       setTimeout(() => {
-          fetch(`http://portal.kideduc.com/services/articles_sugg.php?userID=${userID}`)
+          fetch(`https://www.kideduc.com/portal/services/articles_sugg.php?userID=${userID}`)
             .then((res) => res.json())
             .then((mysuggest) => {
               state.loading = false;

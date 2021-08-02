@@ -109,7 +109,7 @@
         // AJAX Post Jason
         var app = $f7;
 
-        app.request.post('http://portal.kideduc.com/api/EditKeywords.php?ccsForm=user_keywords', {user_login:paraUserName, key_desc: paraKeywords} )
+        app.request.post('https://www.kideduc.com/portal/api/EditKeywords.php?ccsForm=user_keywords', {user_login:paraUserName, key_desc: paraKeywords} )
           .then(function (res) {
 //          $$('.login').html(res.data);                        // init examples code, let it be here. WAIST & NOT CHANGED
             console.log('Load was performed');

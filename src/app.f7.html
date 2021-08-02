@@ -152,7 +152,7 @@
               <p>Popup content goes here.</p>
             </div> -->
             <!-- questionnaire form here -->
-<form action="http://portal.kideduc.com/api/EditQuestionnaire.php?user_id=${users.value.length > 0 ? users.value[0].id : -1}&ccsForm=questionnaire" method="POST" class="list form-ajax-submit" id="helen-form">
+<form action="https://www.kideduc.com/portal/api/EditQuestionnaire.php?user_id=${users.value.length > 0 ? users.value[0].id : -1}&ccsForm=questionnaire" method="POST" class="list form-ajax-submit" id="helen-form">
             <div class="block-title">1 您对本次航程的服务是否满意？</div>
             <div class="list">
               <ul>
@@ -741,7 +741,7 @@
       };
 
       // Simulate Ajax Request
-      app.request.get('http://portal.kideduc.com/services/auth.php', { login: username, password: password })
+      app.request.get('https://www.kideduc.com/portal/services/auth.php', { login: username, password: password })
       .then(function (res) {
 //////  $$('.login').html(res.data);
         console.log(res.data);
