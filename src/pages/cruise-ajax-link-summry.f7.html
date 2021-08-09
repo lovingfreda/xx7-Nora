@@ -94,9 +94,9 @@
                           <p class="row">
                             <p class="col-60">
                                 <a @click="${showPhotoBrowser}" href="#" id="Biz_Href_${link.deck_idx}" data-myid="${link.deck_idx}">
-                                  <i class="icon f7-icons if-not-md"   id="Biz_IconA_${link.id}" data-myid="${link.deck_idx}">search_circle_fill</i>
-                                  <i class="icon material-icons if-md" id="Biz_IconB_${link.id}" data-myid="${link.deck_idx}">search_circle</i>
-                                  <span class="tabbar-label" id="Biz_Span_${link.deck_idx}" data-myid="${link.deck_idx}">查看甲板位置</span>
+                                  <i class="icon f7-icons if-not-md">search_circle_fill</i>
+                                  <i class="icon material-icons if-md">search_circle</i>
+                                  <span class="tabbar-label">查看甲板位置</span>
                                 </a>
                             </p>
                           </p>
@@ -174,9 +174,9 @@ console.log("idx = " + idx);             // Debug..
       */
 
       console.log("target   = " + e.target);
-      console.log("tagtID   = " + e.target.id);
-//    console.log("nodename = " + e.target.nodename);
-      console.log("tagtDateMyID = " + $(e.target).data('myid'));
+      console.log("currentTarget   = " + e.currentTarget);
+      console.log("TargetID   = " + e.currentTarget.id);
+      console.log("Date-MyID  = " + $(e.currentTarget).data('myid'));
 //    console.log("href myid = " + $('span#'+e.target.id).data('myid'));
 
 /*
@@ -189,8 +189,11 @@ console.log("idx = " + idx);             // Debug..
       // ----------------------------------------------------------------------------
       // tony 2021.08.09  Best Method Best Method Best Method Best Method Best Method
       // ----------------------------------------------------------------------------
+      // what you need is to use the event.currentTarget. This will contain the element that actually has the event listener. 
+      // ----------------------------------------------------------------------------
       // After several debug, we find the best method below. 
-      var x = $(e.target).data('myid');    // 4|5|6.....
+//    var x = $(e.target).data('myid');           // 4|5|6.....
+      var x = $(e.currentTarget).data('myid');    // 4|5|6.....
       var idx = (x)-1;                      // activeIndex start at 0
 
       myPhotoBrowserPage.activeIndex = (idx);
