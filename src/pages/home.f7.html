@@ -10,7 +10,7 @@
             <i class="icon material-icons if-md">menu</i>
           </a>
         </div>
-        <div class="title sliding">Welcome to the Anthem of Seas</div>
+        <div class="title sliding"><small><span>船上时间 </span><span id="lisa">waitting...</span></small></div>
         <div class="right">
           <a href="#" class="link icon-only panel-open" data-panel="right">
             <i class="icon f7-icons if-not-md">menu</i>
@@ -176,7 +176,8 @@
   </div>
 </template>
 <script>
-export default (props, {$f7, $on, $store}) => {
+export default (props, {$, $f7, $on, $store}) => {
+  var strNow = new Date();
   //----------------------------------------------------
   $on('pageInit', () => {
       console.log("home.f7  pageInit! ");
@@ -186,6 +187,24 @@ export default (props, {$f7, $on, $store}) => {
       {   // ---   Open Login Screen Automatic ----
           $f7.loginScreen.open('.login-screen', true);
       }
+
+      // Time Clock on ship
+      setInterval(function(){
+            var today = new Date().getFullYear() +"/"+ new Date().getMonth() +"/"+ new Date().getDate();
+            var hours = new Date().getHours()+2;    // Two hours/2h later than CHINESE 
+            var minutes = new Date().getMinutes();
+            var seconds = new Date().getSeconds();
+            if(hours<10){
+                hours = '0'+hour;
+            }
+            if(minutes<10){
+                minutes = '0'+minutes;
+            }
+            if(seconds<10){
+                seconds = '0'+seconds;
+            }
+            $('span#lisa').text(today+" "+hours+":"+minutes+":"+seconds);
+        },1000)
 
   })
   //----------------------------------------------------
