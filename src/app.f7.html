@@ -611,6 +611,8 @@
     const users   = $store.getters.users;
     //----------------------------------------------------
     // Login screen demo data
+    //let toastCenter;        //alert message
+
     let username = '';
     let password = '';
 
@@ -720,11 +722,25 @@
       password = e.target.value;
       $update();
     }
+    const showToastCenter = (msg) => {
+      let toastCenter;
+      // Create toast
+      if (!toastCenter) {
+        toastCenter = $f7.toast.create({
+          text: msg,
+          position: 'center',
+          closeTimeout: 2000,
+        });
+      }
+      // Open it
+      toastCenter.open();
+    }
     const alertLoginData = () => {
 
       // Input Validation
       if (username == "" || password == "") {
           console.log("Error: username or password mustn't be null!");
+          showToastCenter('用户名与密码不允许为空!');
           return;
       }       // Easy Version of check, should be more carefully later
 
@@ -747,7 +763,11 @@
         console.log(res.data);
 
         var users = JSON.parse(res.data)['users'];
-        if (users.length < 1) { return; }  // sometimes we got users[0], sometimes got users[NULL], so check and verify
+        if (users.length < 1) { 
+            // sometimes we got users[0], sometimes got users[NULL], so check and verify
+            showToastCenter('密码不正确! 请重新输入!');
+            return;
+        }  
 
         vUser.firstName = users[0]["first_name"];
         vUser.lastName  = users[0]["last_name"];
