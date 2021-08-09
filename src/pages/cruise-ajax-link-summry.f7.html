@@ -93,10 +93,15 @@
                       <li>
                           <p class="row">
                             <p class="col-60">
-                                <a @click="${showPhotoBrowser}" href="#" id="Biz_Link_7">
-                                  <i class="icon f7-icons if-not-md">search_circle_fill</i>
-                                  <i class="icon material-icons if-md">search_circle</i>
-                                  <span id="Biz_Span_7" class="tabbar-label">查看甲板位置</span>
+                                <a @click="${showPhotoBrowser}" href="#" id="Biz_Href_${link.deck_idx}" data-myid="${link.deck_idx}">
+                                  <i class="icon f7-icons if-not-md"   id="Biz_IconA_${link.id}" data-myid="${link.deck_idx}">search_circle_fill</i>
+                                  <i class="icon material-icons if-md" id="Biz_IconB_${link.id}" data-myid="${link.deck_idx}">search_circle</i>
+                                  <span class="tabbar-label" id="Biz_Span_${link.deck_idx}" data-myid="${link.deck_idx}">查看甲板位置</span>
+                                </a>
+                            </p>
+                            <p class="col-60">
+                                <a @click="${showPhotoBrowser}" href="#">
+                                  <p class="tabbar-label" id="Biz_Span_${link.id}" data-myid="${link.deck_idx}">查看007</p>
                                 </a>
                             </p>
                           </p>
@@ -164,13 +169,35 @@ console.log("DEBUG..DESC=|" + pdtlinks[0]["desc"] + "|");  // Debug..
     //Open photo browser on click
     const showPhotoBrowser = (e) => {
       /*=== Default standalone ===*/
+      /*
       var str = new String(e.target.id);    // Biz_Link_4|Biz_Link_5|Biz_Link_6.....Biz_Span_4|Biz_Span_5|Biz_Span_6.....
 console.log("e.target.id = " + str);    // Debug..
       var reg = str.substring(0,9);         // Biz_Link_  or Biz_Span_    So from char at pos[9]
       var x = str.replace(reg,"");          // 4|5|6.....
       var idx = (x)-1;      // activeIndex start at 0
 console.log("idx = " + idx);             // Debug..
-    
+      */
+
+      console.log("target   = " + e.target);
+      console.log("tagtID   = " + e.target.id);
+//    console.log("nodename = " + e.target.nodename);
+      console.log("tagtDateMyID = " + $(e.target).data('myid'));
+//    console.log("href myid = " + $('span#'+e.target.id).data('myid'));
+
+/*
+      var elmID = 'p#'+e.target.id;
+      console.log("elmID = " + elmID);
+
+      var x = $(elmID).data('myid');
+      var idx = (x)-1;
+*/
+      // ----------------------------------------------------------------------------
+      // tony 2021.08.09  Best Method Best Method Best Method Best Method Best Method
+      // ----------------------------------------------------------------------------
+      // After several debug, we find the best method below. 
+      var x = $(e.target).data('myid');    // 4|5|6.....
+      var idx = (x)-1;                      // activeIndex start at 0
+
       myPhotoBrowserPage.activeIndex = (idx);
 
       //Open photo browser on click
