@@ -92,21 +92,26 @@
                       </li>
                       <li>
                           <p class="row">
-                            <p class="col-60">
+                            <div class="col-60">
                                 <a @click="${showPhotoBrowser}" href="#" id="Biz_Href_${link.deck_idx}" data-myid="${link.deck_idx}">
                                   <i class="icon f7-icons if-not-md">search_circle_fill</i>
                                   <i class="icon material-icons if-md">search_circle</i>
                                   <span class="tabbar-label">查看甲板位置</span>
                                 </a>
-                            </p>
+                            </div>
                           </p>
                       </li>
-                      <!-- <li>
-                          <p>这是一小段测试成功了<br />\n\r如果第一行在这里<br />第二行在这里<br />那么成功啦！</p>
-                      </li> -->
                       <li>
-                          <p style="white-space:pre-line">${link.desc}</p>
+                          <p style="white-space:pre-line" innerHTML="${link.desc}"></p>
                       </li>
+                 <!-- 
+                      <li>
+                          <p>这是一小段测试成功了<br />\n\r如果第一行在这里<br />第二行在这里<br />那么成功啦！</p>
+                      </li>
+                      <li>
+                          <p style="white-space:pre-line">  link.desc </p>
+                      </li>
+                  -->
                     </ul>
                   </div>
               </div>
@@ -136,7 +141,7 @@ export default (props, { $, $update, $f7, $store }) => {
     var pdtlinks = JSON.parse(props.prdt)['links'];
     console.log("Access Catg succeed!" + products[0]["name"]);  // Debug..
     console.log("Access Prdt succeed!" + pdtlinks[0]["name"]);  // Debug..
-console.log("DEBUG..DESC=|" + pdtlinks[0]["desc"] + "|");  // Debug..
+console.log("DEBUG..DESC=|" + pdtlinks[1]["desc"] + "|");  // Debug..
 //pdtlinks[0]["desc"] = pdtlinks[0]["desc"].replace(/\n/g,"\\n").replace(/\r/g,"\\n");
 //console.log("DEBUG..DESC=|" + pdtlinks[0]["desc"] + "|");  // Debug..
 // ====================================================================
