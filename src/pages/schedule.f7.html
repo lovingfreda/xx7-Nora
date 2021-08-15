@@ -12,6 +12,35 @@
         </div>
       </div>
     </div>
+    <!-- Floating Action Button -->
+    <div class="fab fab-center-center color-green">
+      <a href="#">
+        <i class="icon f7-icons if-not-md">plus</i>
+        <i class="icon f7-icons if-not-md">xmark</i>
+        <i class="icon material-icons md-only">add</i>
+        <i class="icon material-icons md-only">close</i>
+      </a>
+      <div class="fab-buttons fab-buttons-center">
+        <a href="#" @click="${toggleJoinin}">预订</a>
+        <a href="#" @click="${toggleDetail}">详情</a>
+        <a href="#" id="wei_href" @click="${toggleClose}" class="fab-close">关闭</a>
+        <a href="#" @click="${toggleMore}">更多..</a>
+      </div>
+    </div>
+    <!-- FAB With Backdrop -->
+    <div class="fab-backdrop"></div>
+    <div class="fab fab-right-bottom">
+      <a href="#">
+        <i class="icon f7-icons if-not-md">plus</i>
+        <i class="icon f7-icons if-not-md">xmark</i>
+        <i class="icon material-icons md-only">add</i>
+        <i class="icon material-icons md-only">close</i>
+      </a>
+      <div class="fab-buttons fab-buttons-top">
+        <a class="fab-label-button fab-close" href="#"><span>1</span><span class="fab-label">关闭</span></a>
+        <a class="fab-label-button" href="#"><span>2</span><span class="fab-label">预订</span></a>
+      </div>
+    </div>
 
     <!-- -----------Tabbar With Labels--------------- -->
     <div class="toolbar tabbar-labels toolbar-top">
@@ -42,6 +71,7 @@
           <p>1> 左右滑动屏幕<i style="font-size: 20px" class="icon f7-icons icon-tooltip if-not-md">info_circle_fill</i>
           <i style="font-size: 20px" class="icon material-icons icon-tooltip if-md">info</i>可以看到更多的活动时间安排.</p>
           <p>2> 双击某一天的活动框，将弹出快捷操作工具图标.</p>
+          <!-- <p><a href="#" class="fab-open" data-fab=".fab-center-center">测试工具箱1</a>   <a href="#" class="fab-open" data-fab=".fab-right-bottom">测试工具箱2</a></p> -->
         </div>
         <!-- ============================================== -->
         <!--
@@ -71,10 +101,15 @@
                           <!-- Some data show in Col-1, others show in Col-2..Col-3....Col-N -->
                           <!-- We using AAA === BBB ? H : N,  and first we should mapping to daily--lines  -->
                           <div class="timeline-item-inner" @dblclick="${showFABTools}" id="Biz_div_${dailyLine.art_daily_id}" data-myid="${dailyLine.art_daily_id}">
-                            <div class="timeline-item-time">${dailyLine.time_st} - ${dailyLine.time_ed}</div>
-                            <div class="timeline-item-title"><small>${dailyLine.title}</small></div>
+                            <div class="timeline-item-time  biz_noselect">${dailyLine.time_st} - ${dailyLine.time_ed} <a href="#" class="fab-open" data-fab=".fab-center-center" data-myid="${dailyLine.art_daily_id}" @click=${toggleFABAuto}>
+                                <i class="icon f7-icons if-not-md">cloud_upload_fill</i>
+                                <i class="icon material-icons md-only">file_upload</i>
+                                <span class="tabbar-label">操作</span>
+                              </a>
+                            </div>
+                            <div class="timeline-item-title biz_noselect"><small>${dailyLine.title}</small></div>
                             <div class="timeline-item-subtitle"></div>
-                            <div class="timeline-item-text">${dailyLine.desc}</div>
+                            <div class="timeline-item-text  biz_noselect">${dailyLine.desc}</div>
                           </div>
                           ` : '')
                       )}
@@ -296,8 +331,23 @@
     //----------------------------------------------------
     // Component Data
     let $toolbarEl;
+    let $currEvnID; // for later used! 
 
     // Component Methods
+    const showToastCenter = (msg) => {
+      let toastCenter;
+      // Create toast
+      if (!toastCenter) {
+        toastCenter = $f7.toast.create({
+          text: msg,
+          position: 'center',
+          closeTimeout: 2000,
+        });
+      }
+      // Open it
+      toastCenter.open();
+    }
+
     const togglePosition = () => {
       $toolbarEl.toggleClass('toolbar-bottom toolbar-top');
     }
@@ -326,12 +376,101 @@
       //----------------------------------------------------
     }
 
+    const toggleFABAuto = (e) => {
+      var key = $(e.currentTarget).data('myid');
+
+      console.log("---- auto toggle FAB|ID key = [" + key + "]");
+      console.log("---- e.currentTarget = " + e.currentTarget);
+      console.log("---- e.parentNode = " + e.currentTarget.parentNode);
+      // show FAB tools
+      $('.fab-center-center').attr('style', 'display:block;');    // show FAB
+      // parentNode childNodes firstChild lastChile previousSibling nextSibling
+      $(e.currentTarget.parentNode.parentNode).css("background-color","yellow");    // tag yellow
+
+      // At last, saving page variable, for latere used.
+      $currEvnID = key; 
+    }
+
+    const toggleJoinin = () => {     // click action join-in
+      console.log("---- toggle action Join In");
+
+      var evtID = $currEvnID;
+      doSaveDBJoinIn(evtID);
+    }
+
+    const toggleDetail = () => {     // click action detail
+      console.log("---- toggle action Details");
+    }
+
+    const toggleClose = () => {     // click action close
+      console.log("---- toggle action Close");
+      $('.timeline-item-inner').attr('style', 'background-color:white;');   // remove yellow
+      // hidden FAB Tools
+      $('.fab-center-center').attr('style', 'display:none;');     // hidden FAB
+
+      // At last, saving page variable, for latere used.
+      $currEvnID = -1; 
+    }
+
+    const toggleMore = () => {     // click action more
+      console.log("---- toggle action More..Nothing to do!");
+    }
+
+    const doSaveDBJoinIn = (evtID) => {
+      console.log("---- saving database joinin ID=[" + evtID + "]");
+
+      if (evtID < 0) { 
+        // sometimes we check and verify
+        showToastCenter('请首先选择活动!');
+        return;
+      }  
+
+      // AJAX Post Jason
+      var app = $f7;
+
+      app.request.post('https://www.kideduc.com/portal/api/EditArticleArrange.php?ccsForm=articles_daily_arrange', { event_id: evtID, user_id_add: '4', user_login: 'eva' })
+          .then(function (res) {
+//          $$('.login').html(res.data);                        // init examples code, let it be here. WAIST & NOT CHANGED
+            console.log('Ajax Saving was performed');
+
+            showToastCenter('预约成功!');
+
+            //reback html init status [no yellow selected]
+            setTimeout(function(){
+                $('a#wei_href').trigger('click');
+            },600);
+
+      });
+
+    }
+
     const showFABTools = (e) => {
+//---------------------------------------------------------------------------------------
+if (true) {        return;       }    // tony: no longer used 
+//---------------------------------------------------------------------------------------
       console.log("---- target " + e.target);
       console.log("---- current target " + e.currentTarget);
 //    console.log("---- targetID " + e.target.id);
 //    console.log("---- showFABTools exec " + $(e.target).data('myid'));
       console.log("---- showFABTools exec " + $(e.currentTarget).data('myid'));
+
+      //$(e.currentTarget).css("background-color","red");   "white"
+      //$('.timeline-item-inner').attr('style', 'background-color:white;');
+
+      if ( $('.fab-center-center').css('display')=='block') {
+        $('.fab-center-center').attr('style', 'display:none;');     // hidden FAB
+        $(e.currentTarget).css("background-color","white");
+      }else{
+        $('.fab-center-center').attr('style', 'display:block;');    // show FAB
+        $(e.currentTarget).css("background-color","gray");
+
+      }
+      //$('.timeline-item-inner').attr('style', 'background-color:white;');
+      //$(e.currentTarget).css("background-color","white"); // Div white color
+
+      //$('.timeline-item-inner').attr('style', 'background-color:white;');
+      //$(e.currentTarget).css("background-color","red");   // Div red color
+
     }
     // Lifecycle
 
@@ -350,11 +489,20 @@
         //$f7.$('span.badge').removeClass('badge');
       });
 
+      $('.fab-center-center').on('open', function(){
+        console.log("FAB control trigger..");
+      });
+
       // iconTooltip init functioon
       var iconTooltip = $f7.tooltip.create({
         targetEl: '.icon-tooltip',
         text: '日程安排可能超出屏幕宽度，请左右划动触摸屏',
       });
+
+      // first time , hidden FAB Tools by default
+      $('.fab-center-center').attr('style', 'display:none;');
+      $('.fab-right-bottom').attr('style', 'display:none;');
+
 
     });
 

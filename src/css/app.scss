@@ -7,7 +7,12 @@
 .small {
   color: #ff9900;
 }
-
+.biz_noselect {
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
 /* Left Panel right border when it is visible by breakpoint */
 .panel-left.panel-in-breakpoint:before {
   position: absolute;
