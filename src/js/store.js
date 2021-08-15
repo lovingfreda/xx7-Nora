@@ -154,6 +154,17 @@ const store = createStore({
                           },
                         ];
     },
+    resetMyArrange({ state }, { userID }) { // Dom should refresh, otherwise deleted-itme will be always exist ! 
+      state.loading = true;
+      setTimeout(() => {
+          fetch(`https://www.kideduc.com/portal/services/articles_arrg.php?userID=${userID}`)
+            .then((res) => res.json())
+            .then((myarrange) => {
+              state.loading = false;
+              state.myarrange = myarrange['arranges'];
+            })
+      }, 1000);
+    },
   },
 })
 export default store;

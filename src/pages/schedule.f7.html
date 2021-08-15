@@ -23,7 +23,7 @@
       <div class="fab-buttons fab-buttons-center">
         <a href="#" @click="${toggleJoinin}">预订</a>
         <a href="#" @click="${toggleDetail}">详情</a>
-        <a href="#" id="wei_href" @click="${toggleClose}" class="fab-close">关闭</a>
+        <a href="#" @click="${toggleClose}" class="fab-close" id="wei_href" >关闭</a>
         <a href="#" @click="${toggleMore}">更多..</a>
       </div>
     </div>
@@ -37,8 +37,8 @@
         <i class="icon material-icons md-only">close</i>
       </a>
       <div class="fab-buttons fab-buttons-top">
-        <a class="fab-label-button fab-close" href="#"><span>1</span><span class="fab-label">关闭</span></a>
-        <a class="fab-label-button" href="#"><span>2</span><span class="fab-label">预订</span></a>
+        <a class="fab-label-button fab-close" href="#" @click="${toggleClose2nd}" id="ron_href" ><span>1</span><span class="fab-label">关闭</span></a>
+        <a class="fab-label-button" href="#" @click="${toggleCancle}"><span>2</span><span class="fab-label">退订</span></a>
       </div>
     </div>
 
@@ -108,7 +108,7 @@
                               </a>
                             </div>
                             <div class="timeline-item-title biz_noselect"><small>${dailyLine.title}</small></div>
-                            <div class="timeline-item-subtitle"></div>
+                            <div class="timeline-item-subtitle">#${dailyLine.art_daily_id}\/#Ref.${dailyLine.ref_article_id}</div>
                             <div class="timeline-item-text  biz_noselect">${dailyLine.desc}</div>
                           </div>
                           ` : '')
@@ -173,10 +173,15 @@
                           <!-- Some data show in Col-1, others show in Col-2..Col-3....Col-N -->
                           <!-- We using AAA === BBB ? H : N,  and first we should mapping to daily--lines  -->
                           <div class="timeline-item-inner">
-                            <div class="timeline-item-time">${dailyLine.time_st} - ${dailyLine.time_ed}</div>
-                            <div class="timeline-item-title"><small>${dailyLine.title}</small></div>
-                            <div class="timeline-item-subtitle"></div>
-                            <div class="timeline-item-text">${dailyLine.desc}</div>
+                            <div class="timeline-item-time  biz_noselect" >${dailyLine.time_st} - ${dailyLine.time_ed} <a href="#" class="fab-open" data-fab=".fab-right-bottom" data-myid="${dailyLine.id}" @click=${toggleFABAuto2nd}>
+                                <i class="icon f7-icons if-not-md">cloud_upload_fill</i>
+                                <i class="icon material-icons md-only">file_upload</i>
+                                <span class="tabbar-label">操作</span>
+                              </a>
+                            </div>
+                            <div class="timeline-item-title biz_noselect"><small>${dailyLine.title}</small></div>
+                            <div class="timeline-item-subtitle">#${dailyLine.id}</div>
+                            <div class="timeline-item-text  biz_noselect">${dailyLine.desc}</div>
                           </div>
                           ` : '')
                       )}
@@ -248,10 +253,10 @@
                           <!-- Some data show in Col-1, others show in Col-2..Col-3....Col-N -->
                           <!-- We using AAA === BBB ? H : N,  and first we should mapping to daily--lines  -->
                           <div class="timeline-item-inner">
-                            <div class="timeline-item-time">${dailyLine.time_st} - ${dailyLine.time_ed}</div>
-                            <div class="timeline-item-title"><small>${dailyLine.title}</small></div>
+                            <div class="timeline-item-time  biz_noselect">${dailyLine.time_st} - ${dailyLine.time_ed}</div>
+                            <div class="timeline-item-title biz_noselect"><small>${dailyLine.title}</small></div>
                             <div class="timeline-item-subtitle"></div>
-                            <div class="timeline-item-text">${dailyLine.desc}</div>
+                            <div class="timeline-item-text  biz_noselect">${dailyLine.desc}</div>
                           </div>
                           ` : '')
                       )}
@@ -331,7 +336,9 @@
     //----------------------------------------------------
     // Component Data
     let $toolbarEl;
-    let $currEvnID; // for later used! 
+
+    let $currEvnID;  // for later used! 
+    let $currMyArrgID; // 2nd, same purpose!
 
     // Component Methods
     const showToastCenter = (msg) => {
@@ -341,7 +348,7 @@
         toastCenter = $f7.toast.create({
           text: msg,
           position: 'center',
-          closeTimeout: 2000,
+          closeTimeout: 800,
         });
       }
       // Open it
@@ -391,6 +398,16 @@
       $currEvnID = key; 
     }
 
+    const toggleFABAuto2nd = (e) => {   // Almost same as 1st
+      var key = $(e.currentTarget).data('myid');
+
+      $('.fab-right-bottom').attr('style', 'display:block;');    // show FAB
+      $(e.currentTarget.parentNode.parentNode).css("background-color","yellow");    // tag yellow
+
+      // At last, saving page variable, for latere used.
+      $currMyArrgID = key; 
+    }
+
     const toggleJoinin = () => {     // click action join-in
       console.log("---- toggle action Join In");
 
@@ -403,7 +420,7 @@
     }
 
     const toggleClose = () => {     // click action close
-      console.log("---- toggle action Close");
+      console.log("---- toggle action 1st Close");
       $('.timeline-item-inner').attr('style', 'background-color:white;');   // remove yellow
       // hidden FAB Tools
       $('.fab-center-center').attr('style', 'display:none;');     // hidden FAB
@@ -412,8 +429,25 @@
       $currEvnID = -1; 
     }
 
+    const toggleClose2nd = () => {     // Almost same ass 1st
+      console.log("---- toggle action 2nd Close");
+      $('.timeline-item-inner').attr('style', 'background-color:white;');   // remove yellow
+      // hidden FAB Tools
+      $('.fab-right-bottom').attr('style', 'display:none;');     // hidden FAB
+
+      // At last, saving page variable, for latere used.
+      $currMyArrgID = -1; 
+    }
+
     const toggleMore = () => {     // click action more
       console.log("---- toggle action More..Nothing to do!");
+    }
+
+    const toggleCancle = () => {     // click action more
+      console.log("---- toggle action Cancle #!");
+
+      var argID = $currMyArrgID;
+      doSaveDBCancle(argID);
     }
 
     const doSaveDBJoinIn = (evtID) => {
@@ -436,13 +470,48 @@
 //          $$('.login').html(res.data);                        // init examples code, let it be here. WAIST & NOT CHANGED
             console.log('Ajax Saving was performed');
 
-            showToastCenter('预约成功!');
+            // otherwise html will not refresh data, deleted-item will be always exist
+            $store.dispatch('resetMyArrange',{ userID:paraUserLogin});
 
             //reback html init status [no yellow selected]
             setTimeout(function(){
                 $('a#wei_href').trigger('click');
-            },600);
+            },200);
 
+            showToastCenter('预约成功!');
+      });
+
+    }
+
+    const doSaveDBCancle = (argID) => {
+      console.log("---- saving database cancle ID=[" + argID + "]");
+
+      if (argID < 0) { 
+        // sometimes we check and verify
+        showToastCenter('请首先选择活动!');
+        return;
+      }  
+
+      // AJAX Post Jason
+      var app = $f7;
+
+      let paraUserID    = (1==users.value.length ? users.value[0].id:'-1');
+      let paraUserLogin = (1==users.value.length ? users.value[0].login:'WEI');
+
+      app.request.post('https://www.kideduc.com/portal/api/EditArticleArrange.php?arrange_id='+argID+'&ccsForm=articles_daily_arrange%3AEdit', { user_id_add: paraUserID, Button_Delete: 'Delete' })
+          .then(function (res) {
+//          $$('.login').html(res.data);                        // init examples code, let it be here. WAIST & NOT CHANGED
+            console.log('Ajax Removing was performed');
+
+            // otherwise html will not refresh data, deleted-item will be always exist
+            $store.dispatch('resetMyArrange',{ userID:paraUserLogin});
+
+            //reback html init status [no yellow selected]
+            setTimeout(function(){
+                $('a#ron_href').trigger('click');
+            },200);
+
+            showToastCenter('退订成功!');
       });
 
     }
