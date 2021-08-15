@@ -428,7 +428,10 @@
       // AJAX Post Jason
       var app = $f7;
 
-      app.request.post('https://www.kideduc.com/portal/api/EditArticleArrange.php?ccsForm=articles_daily_arrange', { event_id: evtID, user_id_add: '4', user_login: 'eva' })
+      let paraUserID    = (1==users.value.length ? users.value[0].id:'-1');
+      let paraUserLogin = (1==users.value.length ? users.value[0].login:'WEI');
+
+      app.request.post('https://www.kideduc.com/portal/api/EditArticleArrange.php?ccsForm=articles_daily_arrange', { event_id: evtID, user_id_add: paraUserID, user_login: paraUserLogin })
           .then(function (res) {
 //          $$('.login').html(res.data);                        // init examples code, let it be here. WAIST & NOT CHANGED
             console.log('Ajax Saving was performed');
