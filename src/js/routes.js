@@ -17,6 +17,8 @@ import LeftPage2 from '../pages/left-page-2.f7.html';
 import CruiseAjaxLoad from '../pages/cruise-ajax-load.f7.html';
 import CruiseAjaxLinkSumry from '../pages/cruise-ajax-link-summry.f7.html';
 
+import AboutLinkAjaxLoadPage from '../pages/about-link-ajax.f7.html';
+
 var routes = [
   {
     path: '/',
@@ -25,6 +27,74 @@ var routes = [
   {
     path: '/about/',
     component: AboutPage,
+  },
+  {
+    path: '/about-link-ajax/:linkId',
+    async: function ({ router, to, resolve }) {
+      // App instance
+      var app = router.app;
+
+      // Show Preloader
+      app.preloader.show();
+
+      // User ID from request
+      var linkId = to.params.linkId;
+
+      // Simulate Ajax Request
+      setTimeout(function () {
+        // We got user data from request
+        var vCatg = {
+          firstName: 'Dear',
+          lastName: 'My Passengers',
+          about: ' 我们为您提供以下服务，希望您喜欢!',
+          links: [
+            {
+              title: 'Fall in lover with YangY Website',
+              url: 'http://framework7.io',
+            },
+            {
+              title: 'Loving Eva Forum',
+              url: 'http://forum.framework7.io',
+            },
+          ]
+        };
+        // Tony Adding Main Logic of AJAX :  1. Larabel 2. CCS Studio
+        app.request.get('https://www.kideduc.com/portal/services/view_link.php?link_id='+linkId, function(data) {
+              // Hide Preloader
+              app.preloader.hide();
+
+              // Resolve route to load page
+              resolve(
+                  {
+                      component: AboutLinkAjaxLoadPage,
+                  },
+                  {
+                      props: {
+                          catg: vCatg,
+                          prdt: data,
+                      }
+                  }
+              );
+
+          });
+/*
+        // Hide Preloader
+        app.preloader.hide();
+
+        // Resolve route to load page
+        resolve(
+          {
+            component: AboutLinkAjaxLoadPage,
+          },
+          {
+            props: {
+              catg: catg,
+            }
+          }
+        );
+*/
+      }, 1000);
+    },
   },
   {
     path: '/form/',

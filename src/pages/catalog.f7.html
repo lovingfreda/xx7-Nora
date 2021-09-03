@@ -3,7 +3,7 @@
     <div class="navbar">
       <div class="navbar-bg"></div>
       <div class="navbar-inner sliding">
-        <div class="title">Catalog</div>
+        <div class="title">History</div>
       </div>
     </div>
     <div class="page-content">
@@ -16,7 +16,7 @@
       </div>
       ${products.value.length === 3 && $h`
         <div class="block">
-          <button class="button button-fill" @click=${addProduct}>Add Product</Button>
+          <button class="button button-fill" @click=${addProduct}>Add Record Line</Button>
         </div>
       `}
     <!-- </div>
@@ -48,7 +48,7 @@
       `}
       <!-- ---------------   Post Session Variables   -------------------- -->
         <div class="block block-strong">
-          <button class="button button-fill" @click=${postSession}>Post Session</Button>
+          <button class="button button-fill" @click=${postSession}>Post To Server</Button>
         </div>
       <!-- ---------------   Post Session Variables   -------------------- -->
     </div>
