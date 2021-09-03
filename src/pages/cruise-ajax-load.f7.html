@@ -13,9 +13,10 @@
       </div>
     </div>
     <div class="page-content">
-      <div class="block block-strong">
+      <!-- <div class="block block-strong">
         ${user.about}
-      </div>
+      </div> -->
+      <div class="block-title">${user.about}</div>
 
       <div class="list links-list">
         <ul>
@@ -34,9 +35,155 @@
         </ul>
       </div>
  -->
+      <!-- ========================================================== -->
+      <div class="block-title">人气推荐</div>
+      <div class="list sortable sortable-opposite">
+        <ul>
+          ${votelists.map((vote) => $h`
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-f7">${vote.rowid}</i></div>
+              <div class="item-inner">
+                <div class="item-title">${vote.name}  <div class="chip chip-outline">
+                  <div class="chip-media bg-color-${vote.dens_color} text-color-black">${vote.persons_per}</div>
+                  <div class="chip-label">${vote.dens_name}</div>
+                </div></div>
+                <div class="item-after">${vote.vote_total}<small>人次推荐</small></div>
+              </div>
+            </div>
+            <div class="sortable-handler"></div>
+          </li>
+          `)}
+          <!-- 
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-f7">6</i></div>
+              <div class="item-inner">
+                <div class="item-title">John Smith  <div class="chip chip-outline">
+                  <div class="chip-media bg-color-yellow text-color-black">64%</div>
+                  <div class="chip-label">适中</div>
+                </div></div>
+                <div class="item-after">62<small>人次推荐</small></div>
+              </div>
+            </div>
+            <div class="sortable-handler"></div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-f7">7</i></div>
+              <div class="item-inner">
+                <div class="item-title">Chloe  <div class="chip chip-outline">
+                  <div class="chip-media bg-color-green text-color-black">42%</div>
+                  <div class="chip-label">舒适</div>
+                </div></div>
+                <div class="item-after">37<small>人次推荐</small></div>
+              </div>
+            </div>
+            <div class="sortable-handler"></div>
+          </li>
+           -->
+
+        </ul>
+      </div>
+      <div class="block-title">今日Top-3</div>
+      <div class="list media-list sortable">
+        <ul>
+          ${toplists.map((top3) => $h`
+          <li>
+            <div class="item-content">
+              <div class="item-media">
+                <img src="${top3.url}" width="80" height="70"/>
+              </div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">${top3.name} #${top3.id}</div>
+                  <div class="item-after">人均:<span>$</span>${top3.fee}</div>
+                </div>
+                <div class="item-subtitle"><span class="badge color-${top3.dens_color}">${top3.dens_name}</span></div>
+                <div class="item-text">${top3.desc}</div>
+              </div>
+            </div>
+            <div class="sortable-handler"></div>
+          </li>
+          `)}
+          <!--
+          <li>
+            <div class="item-content">
+              <div class="item-media">
+                <img src="https://cdn.framework7.io/placeholder/people-160x160-2.jpg" width="80" />
+              </div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">Don't Stop Me Now</div>
+                  <div class="item-after">人均:$55</div>
+                </div>
+                <div class="item-subtitle"><span class="badge color-orange">人员适中</span></div>
+                <div class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis
+                  tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum
+                  sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec
+                  dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+              </div>
+            </div>
+            <div class="sortable-handler"></div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media">
+                <img src="https://cdn.framework7.io/placeholder/people-160x160-3.jpg" width="80" />
+              </div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">Billie Jean</div>
+                  <div class="item-after">人均:$16</div>
+                </div>
+                <div class="item-subtitle"><span class="badge color-green">环境舒适</span></div>
+                <div class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis
+                  tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum
+                  sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec
+                  dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+              </div>
+            </div>
+            <div class="sortable-handler"></div>
+          </li>
+          -->
+        </ul>
+      </div>
+      <!-- ========================================================== -->
     </div>
   </div>
 </template>
+<style>
+:root {
+  --f7-chip-font-size: 12px;
+  --f7-chip-font-weight: normal;
+  --f7-chip-media-font-size: 13px;
+  --f7-chip-bg-color: rgba(0, 0, 0, 0.12);
+  --f7-chip-outline-border-color: rgba(0, 0, 0, 0.12);
+  --f7-chip-delete-button-color: #000;
+}
+  .icon-f7 {
+    background: #EE350F;
+    color: #fff !important;
+    border-radius: 50%;
+    text-align: center;
+  }
+
+  .icon-f7:before {
+    content: '';/*content: '7';*/
+  }
+
+  .ios .icon-f7 {
+    width: 29px;
+    height: 29px;
+    line-height: 29px;
+  }
+
+  .md .icon-f7 {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+  }
+</style>
 <script>
   export default (props) => {
     const user = props.catg;
@@ -47,6 +194,11 @@
 //      products: JSON.parse(this.$route.context.products)['products'],     // Important !!! ********************************
     var products = JSON.parse(props.prdt)['products'];
     console.log("Get LinkCategories succeed! Result List : {" + products[0]["name"] + "...}");  // Debug..
+
+    // new changes at 2021.09.02 
+    // adding 2 lists : votelist and toplist
+    var votelists = JSON.parse(props.prdt)['votelists'];
+    var toplists  = JSON.parse(props.prdt)['toplists'];
 
     return $render;
   }
